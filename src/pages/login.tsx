@@ -4,29 +4,56 @@ import { useRouter } from 'next/router'
 import Layout from '@/components/Layout'
 
 export default function Login() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [isRegistering, setIsRegistering] = useState(false)
   const supabase = useSupabaseClient()
   const router = useRouter()
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setLoading(true)
     try {
-      console.log('Attempting login with:', { username, password: '****' })
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: username, // Supabase uses email as identifier, but we're using it for username
-        password,
+      let result;
+      if (isRegistering) {
+        result = await supabase.auth.signUp({
+          email,
+          password,
+        })
+      } else {
+        result = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
+      }
+      const { data, error } = result
+      if (error) throw error
+      console.log(isRegistering ? 'Registered successfully:' : 'Logged in successfully:', data)
+      router.push('/') // Redirect to home page on successful auth
+    } catch (error) {
+      console.error('Error during authentication:', error)
+      setError(`Failed to ${isRegistering ? 'register' : 'log in'}. Please check your email and password.`)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGmailSignIn = async () => {
+    setError(null)
+    setLoading(true)
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
       })
       if (error) throw error
-      console.log('Logged in successfully:', data)
-      router.push('/') // Redirect to home page on successful login
+      console.log('Signed in with Gmail successfully:', data)
+      // The redirect is handled automatically by Supabase
     } catch (error) {
-      console.error('Error logging in:', error)
-      setError('Failed to log in. Please check your username and password.')
+      console.error('Error signing in with Gmail:', error)
+      setError('Failed to sign in with Gmail. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -35,17 +62,17 @@ export default function Login() {
   return (
     <Layout>
       <div className="login-container">
-        <h1>Login</h1>
+        <h1>{isRegistering ? 'Register' : 'Login'}</h1>
         {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleAuth}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input
-              id="username"
-              type="text"
-              placeholder="Enter your username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -61,9 +88,15 @@ export default function Login() {
             />
           </div>
           <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Processing...' : (isRegistering ? 'Register' : 'Login')}
           </button>
         </form>
+        <button onClick={() => setIsRegistering(!isRegistering)}>
+          {isRegistering ? 'Switch to Login' : 'Switch to Register'}
+        </button>
+        <button onClick={handleGmailSignIn} disabled={loading}>
+          Sign in with Gmail
+        </button>
       </div>
     </Layout>
   )
