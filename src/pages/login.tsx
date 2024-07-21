@@ -16,6 +16,7 @@ export default function Login() {
     setError(null)
     setLoading(true)
     try {
+      console.log('Attempting login with:', { username, password: '****' })
       const { data, error } = await supabase.auth.signInWithPassword({
         email: username, // Supabase uses email as identifier, but we're using it for username
         password,
