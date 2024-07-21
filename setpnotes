@@ -1,0 +1,5 @@
+npm install next
+use supabase and anthropic keys
+ANTHROPIC_API_KEY=
+NEXT_PUBLIC_SUPABASE_URL=https://eiqyweohalxknhbliebq.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
