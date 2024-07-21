@@ -87,14 +87,25 @@ export default function Login() {
               required
             />
           </div>
-          <button type="submit" disabled={loading}>
+          <button 
+            type="submit" 
+            disabled={loading}
+            style={{ backgroundColor: '#ADD8E6' }} // Light blue background
+          >
             {loading ? 'Processing...' : (isRegistering ? 'Register' : 'Login')}
           </button>
         </form>
-        <button onClick={() => setIsRegistering(!isRegistering)}>
+        <button 
+          onClick={() => setIsRegistering(!isRegistering)}
+          style={{ backgroundColor: '#ADD8E6' }} // Light blue background
+        >
           {isRegistering ? 'Switch to Login' : 'Switch to Register'}
         </button>
-        <button onClick={handleGmailSignIn} disabled={loading}>
+        <button 
+          onClick={handleGmailSignIn} 
+          disabled={loading}
+          style={{ backgroundColor: '#ADD8E6' }} // Light blue background
+        >
           Sign in with Gmail
         </button>
       </div>

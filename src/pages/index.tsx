@@ -1,8 +1,13 @@
 import Layout from '@/components/Layout'
+import Head from 'next/head'
 
 export default function HomePage() {
   return (
     <Layout>
+      <Head>
+        <title>Empower BI - Cloud Consulting and AI Development Services</title>
+        <meta name="description" content="Empower BI specializes in cloud consulting, AI development, database support, and web application development for Azure, AWS, GCP, and more." />
+      </Head>
       <h1>Welcome to Empower BI</h1>
       <p>We specialize in the following services:</p>
       <ul>
