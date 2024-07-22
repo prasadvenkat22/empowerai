@@ -92,15 +92,21 @@ export default function Customer() {
       <div className="mb-4">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          onClick={() => setShowInsertForm(true)}
+          onClick={() => {
+            setShowInsertForm(!showInsertForm);
+            setShowUpdateForm(false);
+          }}
         >
-          Insert New Customer
+          {showInsertForm ? 'Hide Insert Form' : 'Insert New Customer'}
         </button>
         <button
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setShowUpdateForm(true)}
+          onClick={() => {
+            setShowUpdateForm(!showUpdateForm);
+            setShowInsertForm(false);
+          }}
         >
-          Update Customer
+          {showUpdateForm ? 'Hide Update Form' : 'Update Customer'}
         </button>
       </div>
       {loading && <p className="text-lg">Loading...</p>}
