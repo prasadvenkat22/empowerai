@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { useState } from 'react'
+import Layout from '@/components/Layout'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [supabase] = useState(() => createPagesBrowserClient(
@@ -15,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       supabaseClient={supabase}
       initialSession={pageProps.initialSession}
     >
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </SessionContextProvider>
   )
 }

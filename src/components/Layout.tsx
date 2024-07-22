@@ -25,7 +25,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 Logo
               </Link>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-4">
               {tabs.map((tab) => (
                 <Link
                   key={tab.name}
