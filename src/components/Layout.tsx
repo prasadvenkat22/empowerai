@@ -11,14 +11,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <div className="flex-shrink-0">
                 <Link href="/" className="text-xl font-bold text-gray-800">Logo</Link>
               </div>
-              <div className="hidden md:block">
-                <ul className="flex space-x-6">
-                  <li><Link href="/" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Home</Link></li>
-                  <li><Link href="/customer" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Customer</Link></li>
-                  <li><Link href="/service" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Service</Link></li>
-                  <li><Link href="/contacts" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Contacts</Link></li>
-                  <li><Link href="/users" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Users</Link></li>
-                </ul>
+              <div className="hidden md:flex space-x-6">
+                <Link href="/" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Home</Link>
+                <Link href="/customer" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Customer</Link>
+                <Link href="/service" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Service</Link>
+                <Link href="/contacts" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Contacts</Link>
+                <Link href="/users" className="text-gray-800 hover:text-blue-600 font-medium transition duration-300">Users</Link>
               </div>
             </div>
             <div>
