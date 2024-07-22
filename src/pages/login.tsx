@@ -61,12 +61,12 @@ export default function Login() {
 
   return (
     <Layout>
-      <div className="login-container">
-        <h1>{isRegistering ? 'Register' : 'Login'}</h1>
-        {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleAuth}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+      <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-4">{isRegistering ? 'Register' : 'Login'}</h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <form onSubmit={handleAuth} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block mb-1">Email</label>
             <input
               id="email"
               type="email"
@@ -74,10 +74,11 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="w-full px-3 py-2 border rounded-md"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div>
+            <label htmlFor="password" className="block mb-1">Password</label>
             <input
               id="password"
               type="password"
@@ -85,26 +86,27 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="w-full px-3 py-2 border rounded-md"
             />
           </div>
           <button 
             type="submit" 
             disabled={loading}
-            style={{ backgroundColor: '#ADD8E6' }} // Light blue background
+            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 disabled:bg-blue-300"
           >
             {loading ? 'Processing...' : (isRegistering ? 'Register' : 'Login')}
           </button>
         </form>
         <button 
           onClick={() => setIsRegistering(!isRegistering)}
-          style={{ backgroundColor: '#ADD8E6' }} // Light blue background
+          className="w-full mt-4 bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300"
         >
           {isRegistering ? 'Switch to Login' : 'Switch to Register'}
         </button>
         <button 
           onClick={handleGmailSignIn} 
           disabled={loading}
-          style={{ backgroundColor: '#ADD8E6' }} // Light blue background
+          className="w-full mt-4 bg-red-500 text-white py-2 rounded-md hover:bg-red-600 disabled:bg-red-300"
         >
           Sign in with Gmail
         </button>
