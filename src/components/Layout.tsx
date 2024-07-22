@@ -25,7 +25,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 Logo
               </Link>
             </div>
-            <div className="flex">
+            <div className="flex space-x-2">
               {tabs.map((tab) => (
                 <Link
                   key={tab.name}
@@ -35,7 +35,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       ? 'bg-blue-500 text-white'
                       : 'text-gray-800 hover:bg-blue-100'
                   }`}
-                  aria-label={tab.name}
                 >
                   {tab.name}
                 </Link>
