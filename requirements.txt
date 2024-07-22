@@ -1,1 +1,2 @@
-Flask==2.3.2
+next==13.4.7
+tailwindcss==3.3.2
