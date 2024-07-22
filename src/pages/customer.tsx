@@ -86,125 +86,153 @@ export default function Customer() {
     }
   };
 
+  const handleDelete = async (userId: number) => {
+    try {
+      const response = await fetch(`http://165.227.97.62:8000/CRUD/users/${userId}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete user');
+      }
+      fetchUsers();
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      setError('Failed to delete user. Please try again later.');
+    }
+  };
+
   return (
     <Layout>
-      <h1 className="text-3xl font-bold mb-4">Customer Page</h1>
-      <div className="mb-4">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          onClick={() => {
-            setShowInsertForm(!showInsertForm);
-            setShowUpdateForm(false);
-          }}
-        >
-          {showInsertForm ? 'Hide Insert Form' : 'Insert New Customer'}
-        </button>
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => {
-            setShowUpdateForm(!showUpdateForm);
-            setShowInsertForm(false);
-          }}
-        >
-          {showUpdateForm ? 'Hide Update Form' : 'Update Customer'}
-        </button>
-      </div>
-      {loading && <p className="text-lg">Loading...</p>}
-      {error && <p className="text-lg text-red-500">{error}</p>}
-      {showUpdateForm && (
-        <div className="mb-4 p-4 border rounded">
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-xl font-bold">Update Customer</h2>
-            <button
-              className="text-red-500 hover:text-red-700"
-              onClick={() => {
-                setShowUpdateForm(false);
-                setSelectedUser(null);
-              }}
-            >
-              Close
-            </button>
-          </div>
-          <select
-            className="border rounded px-2 py-1 mr-2 mb-2"
-            onChange={(e) => setSelectedUser(users.find(u => u.id === parseInt(e.target.value)) || null)}
-          >
-            <option value="">Select a user</option>
-            {users.map(user => (
-              <option key={user.id} value={user.id}>{user.email}</option>
-            ))}
-          </select>
-          {selectedUser && (
-            <>
-              <input
-                type="text"
-                value={selectedUser.email}
-                onChange={(e) => setSelectedUser({...selectedUser, email: e.target.value})}
-                className="border rounded px-2 py-1 mr-2 mb-2"
-              />
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-                onClick={() => handleUpdate(selectedUser)}
-              >
-                Update
-              </button>
-            </>
-          )}
-        </div>
-      )}
-      {showInsertForm && (
-        <div className="mb-4 p-4 border rounded">
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-xl font-bold">Insert New Customer</h2>
-            <button
-              className="text-red-500 hover:text-red-700"
-              onClick={() => {
-                setShowInsertForm(false);
-                setNewUser({ email: '', is_active: true });
-              }}
-            >
-              Close
-            </button>
-          </div>
-          <input
-            type="text"
-            value={newUser.email}
-            onChange={(e) => setNewUser({...newUser, email: e.target.value})}
-            placeholder="Email"
-            className="border rounded px-2 py-1 mr-2 mb-2"
-          />
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">Customer Management</h1>
+        <div className="mb-6 flex space-x-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-            onClick={handleInsert}
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+            onClick={() => {
+              setShowInsertForm(!showInsertForm);
+              setShowUpdateForm(false);
+            }}
           >
-            Insert
+            {showInsertForm ? 'Hide Insert Form' : 'Add New Customer'}
+          </button>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+            onClick={() => {
+              setShowUpdateForm(!showUpdateForm);
+              setShowInsertForm(false);
+            }}
+          >
+            {showUpdateForm ? 'Hide Update Form' : 'Update Customer'}
           </button>
         </div>
-      )}
-      {!loading && !error && (
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 border-b">ID</th>
-                <th className="px-4 py-2 border-b">Email</th>
-                <th className="px-4 py-2 border-b">Active</th>
-                <th className="px-4 py-2 border-b">Created At</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td className="px-4 py-2 border-b">{user.id}</td>
-                  <td className="px-4 py-2 border-b">{user.email}</td>
-                  <td className="px-4 py-2 border-b">{user.is_active ? 'Yes' : 'No'}</td>
-                  <td className="px-4 py-2 border-b">{new Date(user.created_at).toLocaleString()}</td>
-                </tr>
+        {loading && <p className="text-lg">Loading...</p>}
+        {error && <p className="text-lg text-red-500">{error}</p>}
+        {showUpdateForm && (
+          <div className="mb-6 p-4 bg-white shadow-md rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Update Customer</h2>
+              <button
+                className="text-red-500 hover:text-red-700 transition duration-300 ease-in-out"
+                onClick={() => {
+                  setShowUpdateForm(false);
+                  setSelectedUser(null);
+                }}
+              >
+                Close
+              </button>
+            </div>
+            <select
+              className="w-full border rounded px-3 py-2 mb-4"
+              onChange={(e) => setSelectedUser(users.find(u => u.id === parseInt(e.target.value)) || null)}
+            >
+              <option value="">Select a user</option>
+              {users.map(user => (
+                <option key={user.id} value={user.id}>{user.email}</option>
               ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            </select>
+            {selectedUser && (
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={selectedUser.email}
+                  onChange={(e) => setSelectedUser({...selectedUser, email: e.target.value})}
+                  className="flex-grow border rounded px-3 py-2"
+                />
+                <button
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                  onClick={() => handleUpdate(selectedUser)}
+                >
+                  Update
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+        {showInsertForm && (
+          <div className="mb-6 p-4 bg-white shadow-md rounded-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Insert New Customer</h2>
+              <button
+                className="text-red-500 hover:text-red-700 transition duration-300 ease-in-out"
+                onClick={() => {
+                  setShowInsertForm(false);
+                  setNewUser({ email: '', is_active: true });
+                }}
+              >
+                Close
+              </button>
+            </div>
+            <div className="flex space-x-2">
+              <input
+                type="text"
+                value={newUser.email}
+                onChange={(e) => setNewUser({...newUser, email: e.target.value})}
+                placeholder="Email"
+                className="flex-grow border rounded px-3 py-2"
+              />
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                onClick={handleInsert}
+              >
+                Insert
+              </button>
+            </div>
+          </div>
+        )}
+        {!loading && !error && (
+          <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table className="min-w-full">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">{user.id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{user.is_active ? 'Yes' : 'No'}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{new Date(user.created_at).toLocaleString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <button
+                        className="text-red-600 hover:text-red-900 transition duration-300 ease-in-out"
+                        onClick={() => handleDelete(user.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </Layout>
   )
 }
