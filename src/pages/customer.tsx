@@ -112,10 +112,21 @@ export default function Customer() {
       {loading && <p className="text-lg">Loading...</p>}
       {error && <p className="text-lg text-red-500">{error}</p>}
       {showUpdateForm && (
-        <div className="mb-4">
-          <h2 className="text-xl font-bold mb-2">Update Customer</h2>
+        <div className="mb-4 p-4 border rounded">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-xl font-bold">Update Customer</h2>
+            <button
+              className="text-red-500 hover:text-red-700"
+              onClick={() => {
+                setShowUpdateForm(false);
+                setSelectedUser(null);
+              }}
+            >
+              Close
+            </button>
+          </div>
           <select
-            className="border rounded px-2 py-1 mr-2"
+            className="border rounded px-2 py-1 mr-2 mb-2"
             onChange={(e) => setSelectedUser(users.find(u => u.id === parseInt(e.target.value)) || null)}
           >
             <option value="">Select a user</option>
@@ -129,7 +140,7 @@ export default function Customer() {
                 type="text"
                 value={selectedUser.email}
                 onChange={(e) => setSelectedUser({...selectedUser, email: e.target.value})}
-                className="border rounded px-2 py-1 mr-2"
+                className="border rounded px-2 py-1 mr-2 mb-2"
               />
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
@@ -142,14 +153,25 @@ export default function Customer() {
         </div>
       )}
       {showInsertForm && (
-        <div className="mb-4">
-          <h2 className="text-xl font-bold mb-2">Insert New Customer</h2>
+        <div className="mb-4 p-4 border rounded">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-xl font-bold">Insert New Customer</h2>
+            <button
+              className="text-red-500 hover:text-red-700"
+              onClick={() => {
+                setShowInsertForm(false);
+                setNewUser({ email: '', is_active: true });
+              }}
+            >
+              Close
+            </button>
+          </div>
           <input
             type="text"
             value={newUser.email}
             onChange={(e) => setNewUser({...newUser, email: e.target.value})}
             placeholder="Email"
-            className="border rounded px-2 py-1 mr-2"
+            className="border rounded px-2 py-1 mr-2 mb-2"
           />
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
