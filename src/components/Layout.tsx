@@ -6,7 +6,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="flex flex-col min-h-screen">
       <nav className="bg-gray-800 text-white">
         <div className="container mx-auto px-4">
-          <ul className="flex space-x-4 py-4">
+          <ul className="flex justify-between items-center py-4">
             <li><Link href="/" className="hover:text-gray-300">Home</Link></li>
             <li><Link href="/customer" className="hover:text-gray-300">Customer</Link></li>
             <li><Link href="/service" className="hover:text-gray-300">Service</Link></li>
