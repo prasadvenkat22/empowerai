@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
@@ -21,7 +21,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <Link href="/" className="text-xl font-bold text-gray-800" aria-label="Home">Logo</Link>
+              <Link href="/" className="text-xl font-bold text-gray-800" aria-label="Home">
+                Logo
+              </Link>
             </div>
             <div className="flex">
               {tabs.map((tab) => (
@@ -44,7 +46,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </header>
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
