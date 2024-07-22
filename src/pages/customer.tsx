@@ -221,7 +221,11 @@ export default function Customer() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <button
                         className="text-red-600 hover:text-red-900 transition duration-300 ease-in-out"
-                        onClick={() => handleDelete(user.id)}
+                        onClick={() => {
+                          if (window.confirm('Are you sure you want to delete this user?')) {
+                            handleDelete(user.id);
+                          }
+                        }}
                       >
                         Delete
                       </button>
