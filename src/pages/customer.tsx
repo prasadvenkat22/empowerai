@@ -76,6 +76,8 @@ export default function Customer() {
         return;
       }
 
+      console.log('Attempting to insert user:', newUser);
+
       // Insert the new user
       const response = await fetch('http://165.227.97.62:8000/CRUD/users/', {
         method: 'POST',
@@ -91,10 +93,16 @@ export default function Customer() {
         }),
       });
 
+      console.log('Response status:', response.status);
+
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('Error response:', errorData);
         throw new Error(errorData.detail || 'Failed to insert user');
       }
+
+      const responseData = await response.json();
+      console.log('Successful response:', responseData);
 
       await fetchUsers();
       setShowInsertForm(false);
