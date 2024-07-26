@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 interface User {
   id: number;
@@ -47,8 +47,11 @@ export default function Customer() {
     }
   };
 
-  const handleUpdate = async (user: User) => {
+  const handleUpdate = useCallback(async (user: User) => {
     try {
+      if (!window.confirm('Are you sure you want to update this user?')) {
+        return;
+      }
       const response = await fetch(`http://165.227.97.62:8000/CRUD/users/${user.id}`, {
         method: 'PUT',
         headers: {
@@ -59,14 +62,15 @@ export default function Customer() {
       if (!response.ok) {
         throw new Error('Failed to update user');
       }
-      fetchUsers();
+      await fetchUsers();
       setShowUpdateForm(false);
       setSelectedUser(null);
+      setError(null);
     } catch (error) {
       console.error('Error updating user:', error);
       setError('Failed to update user. Please try again later.');
     }
-  };
+  }, [fetchUsers]);
 
   const handleInsert = async () => {
     try {
@@ -201,19 +205,31 @@ export default function Customer() {
               ))}
             </select>
             {selectedUser && (
-              <div className="flex space-x-2">
+              <div className="space-y-4">
                 <input
                   type="text"
                   value={selectedUser.email}
                   onChange={(e) => setSelectedUser({...selectedUser, email: e.target.value})}
-                  className="flex-grow border rounded px-3 py-2"
+                  className="w-full border rounded px-3 py-2"
                 />
-                <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
-                  onClick={() => handleUpdate(selectedUser)}
-                >
-                  Update
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-50"
+                    onClick={() => handleUpdate(selectedUser)}
+                    disabled={selectedUser.email === users.find(u => u.id === selectedUser.id)?.email}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                    onClick={() => {
+                      setShowUpdateForm(false);
+                      setSelectedUser(null);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             )}
           </div>
