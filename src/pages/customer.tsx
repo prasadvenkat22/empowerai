@@ -70,17 +70,7 @@ export default function Customer() {
 
   const handleInsert = async () => {
     try {
-      // First, fetch the application
-      const appResponse = await fetch('http://165.227.97.62:8000/CRUD/applications/?name=ebi');
-      if (!appResponse.ok) {
-        throw new Error('Failed to fetch application');
-      }
-      const appData = await appResponse.json();
-      if (appData.length === 0) {
-        throw new Error('Application not found');
-      }
-      const applicationId = appData[0].id;
-
+  
       // Then, insert the new user
       const response = await fetch('http://165.227.97.62:8000/CRUD/users/', {
         method: 'POST',
@@ -88,8 +78,7 @@ export default function Customer() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...newUser,
-          application: applicationId
+          ...newUser
         }),
       });
       if (!response.ok) {
