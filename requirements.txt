@@ -1,26 +1,8 @@
-# Python web framework for backend API
-Flask==2.3.2
-
-# WSGI HTTP Server
-gunicorn==21.2.0
-
-# Database adapter (if using PostgreSQL)
-psycopg2-binary==2.9.6
-
-# Python-PostgreSQL Database Adapter
-psycopg2==2.9.6
-
-# JWT authentication
-PyJWT==2.7.0
-
-# Environment variables management
-python-dotenv==1.0.0
-
-# CORS handling
-Flask-CORS==4.0.0
-
-# SQL toolkit and ORM
-SQLAlchemy==2.0.19
-
-# Date parsing library
-python-dateutil==2.8.2
+next==13.4.19
+react==18.2.0
+react-dom==18.2.0
+tailwindcss==3.3.3
+autoprefixer==10.4.15
+postcss==8.4.29
+@supabase/supabase-js==2.33.1
+typescript==5.2.2
