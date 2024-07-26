@@ -10,7 +10,10 @@ interface User {
 
 interface NewUser {
   email: string;
-  is_active: boolean;
+  name: string;
+  password: string;
+  role: string;
+  application: string;
 }
 
 export default function Customer() {
@@ -20,7 +23,7 @@ export default function Customer() {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [showInsertForm, setShowInsertForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [newUser, setNewUser] = useState<NewUser>({ email: '', is_active: true });
+  const [newUser, setNewUser] = useState<NewUser>({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
 
   useEffect(() => {
     fetchUsers();
@@ -67,19 +70,34 @@ export default function Customer() {
 
   const handleInsert = async () => {
     try {
+      // First, fetch the application
+      const appResponse = await fetch('http://165.227.97.62:8000/CRUD/applications/?name=ebi');
+      if (!appResponse.ok) {
+        throw new Error('Failed to fetch application');
+      }
+      const appData = await appResponse.json();
+      if (appData.length === 0) {
+        throw new Error('Application not found');
+      }
+      const applicationId = appData[0].id;
+
+      // Then, insert the new user
       const response = await fetch('http://165.227.97.62:8000/CRUD/users/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify({
+          ...newUser,
+          application: applicationId
+        }),
       });
       if (!response.ok) {
         throw new Error('Failed to insert user');
       }
       fetchUsers();
       setShowInsertForm(false);
-      setNewUser({ email: '', is_active: true });
+      setNewUser({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
     } catch (error) {
       console.error('Error inserting user:', error);
       setError('Failed to insert user. Please try again later.');
@@ -182,16 +200,38 @@ export default function Customer() {
                 Close
               </button>
             </div>
-            <div className="flex space-x-2">
+            <div className="space-y-4">
               <input
                 type="text"
                 value={newUser.email}
                 onChange={(e) => setNewUser({...newUser, email: e.target.value})}
                 placeholder="Email"
-                className="flex-grow border rounded px-3 py-2"
+                className="w-full border rounded px-3 py-2"
               />
+              <input
+                type="text"
+                value={newUser.name}
+                onChange={(e) => setNewUser({...newUser, name: e.target.value})}
+                placeholder="Name"
+                className="w-full border rounded px-3 py-2"
+              />
+              <input
+                type="password"
+                value={newUser.password}
+                onChange={(e) => setNewUser({...newUser, password: e.target.value})}
+                placeholder="Password"
+                className="w-full border rounded px-3 py-2"
+              />
+              <select
+                value={newUser.role}
+                onChange={(e) => setNewUser({...newUser, role: e.target.value})}
+                className="w-full border rounded px-3 py-2"
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
               <button
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
                 onClick={handleInsert}
               >
                 Insert
