@@ -194,7 +194,7 @@ export default function Customer() {
                 className="text-red-500 hover:text-red-700 transition duration-300 ease-in-out"
                 onClick={() => {
                   setShowInsertForm(false);
-                  setNewUser({ email: '', is_active: true });
+                  setNewUser({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
                 }}
               >
                 Close
