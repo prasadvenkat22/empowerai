@@ -70,26 +70,39 @@ export default function Customer() {
 
   const handleInsert = async () => {
     try {
-  
-      // Then, insert the new user
+      // Validate input
+      if (!newUser.email || !newUser.name || !newUser.password) {
+        setError('Please fill in all required fields.');
+        return;
+      }
+
+      // Insert the new user
       const response = await fetch('http://165.227.97.62:8000/CRUD/users/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...newUser
+          email: newUser.email,
+          name: newUser.name,
+          password: newUser.password,
+          role: newUser.role,
+          application: newUser.application,
         }),
       });
+
       if (!response.ok) {
-        throw new Error('Failed to insert user');
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to insert user');
       }
-      fetchUsers();
+
+      await fetchUsers();
       setShowInsertForm(false);
       setNewUser({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
+      setError(null);
     } catch (error) {
       console.error('Error inserting user:', error);
-      setError('Failed to insert user. Please try again later.');
+      setError(error instanceof Error ? error.message : 'Failed to insert user. Please try again later.');
     }
   };
 
