@@ -110,7 +110,13 @@ export default function Customer() {
       setError(null);
     } catch (error) {
       console.error('Error inserting user:', error);
-      setError(error instanceof Error ? error.message : 'Failed to insert user. Please try again later.');
+      if (error instanceof Error) {
+        setError(error.message);
+      } else if (typeof error === 'object' && error !== null) {
+        setError(JSON.stringify(error));
+      } else {
+        setError('Failed to insert user. Please try again later.');
+      }
     }
   };
 
