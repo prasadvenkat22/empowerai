@@ -70,12 +70,29 @@ export default function Customer() {
 
   const handleInsert = async () => {
     try {
-      // Validate input
-      if (!newUser.email || !newUser.name || !newUser.password) {
-        setError('Please fill in all required fields.');
+      // Enhanced input validation
+      if (!newUser.email.trim()) {
+        setError('Email is required.');
+        return;
+      }
+      if (!newUser.name.trim()) {
+        setError('Name is required.');
+        return;
+      }
+      if (!newUser.password.trim()) {
+        setError('Password is required.');
+        return;
+      }
+      if (newUser.password.length < 8) {
+        setError('Password must be at least 8 characters long.');
+        return;
+      }
+      if (!/\S+@\S+\.\S+/.test(newUser.email)) {
+        setError('Please enter a valid email address.');
         return;
       }
 
+      setError(null);
       console.log('Attempting to insert user:', newUser);
 
       // Insert the new user
@@ -85,8 +102,8 @@ export default function Customer() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: newUser.email,
-          name: newUser.name,
+          email: newUser.email.trim(),
+          name: newUser.name.trim(),
           password: newUser.password,
           role: newUser.role,
           application: newUser.application,
@@ -107,7 +124,6 @@ export default function Customer() {
       await fetchUsers();
       setShowInsertForm(false);
       setNewUser({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
-      setError(null);
     } catch (error) {
       console.error('Error inserting user:', error);
       if (error instanceof Error) {
