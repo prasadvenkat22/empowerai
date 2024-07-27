@@ -9,6 +9,7 @@ export default function HomePage() {
     { title: "Application Development", description: "Programming in Python, Spark, SQL, Azure Data Factory, Databricks and Snowflake", icon: "💻" },
     { title: "Web Development", description: "Application development and support in React.js, Next.js, HTML, Power BI, JavaScript and .NET", icon: "🌐" },
     { title: "24/7 Support", description: "Onshore and offshore support for web applications and backend", icon: "🔧" },
+    { title: "Snowflake", description: "Snowflake development, cost optimization, DBT, Airflow and Optimization", icon: "❄️" },
   ]
 
   return (
