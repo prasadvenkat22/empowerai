@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
+import Image from "next/image";
 
 type Tab = {
   name: string;
@@ -26,8 +27,8 @@ const Navbar = () => {
       <nav className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div>
-            <Link href="/" className="text-xl font-bold text-gray-800" aria-label="Home">
-              Logo
+            <Link href="/" aria-label="Home">
+              <Image src="/logo.svg" alt="EBI Logo" width={150} height={40} />
             </Link>
           </div>
           <div className="hidden md:flex space-x-4">
