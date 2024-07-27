@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div>
             <Link href="/" aria-label="Home">
-              <Image src="/logo.svg" alt="EBI Logo" width={150} height={40} />
+              <Image src="/logo.svg" alt="EBI Logo" width={150} height={40} priority />
             </Link>
           </div>
           <div className="hidden md:flex space-x-4">
