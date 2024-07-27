@@ -3,7 +3,12 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 
-const tabs = [
+type Tab = {
+  name: string;
+  path: string;
+};
+
+const tabs: Tab[] = [
   { name: "Contacts", path: "/contacts" },
   { name: "Customer", path: "/customer" },
   { name: "Service", path: "/service" },
