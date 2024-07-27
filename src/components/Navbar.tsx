@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import Image from "next/image";
-import Image from "next/image";
 
 type Tab = {
   name: string;
