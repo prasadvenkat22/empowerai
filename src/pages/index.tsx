@@ -10,6 +10,7 @@ export default function HomePage() {
     { title: "Web Development", description: "Application development and support in React.js, Next.js, HTML, Power BI, JavaScript and .NET", icon: "🌐" },
     { title: "24/7 Support", description: "Onshore and offshore support for web applications and backend", icon: "🔧" },
     { title: "Snowflake", description: "Snowflake development, cost optimization, DBT, Airflow and Optimization", icon: "❄️" },
+    { title: "Databricks", description: "Databricks development, spark optimization, workflows, catalogs and analytics", icon: "🔥" },
   ]
 
   return (
