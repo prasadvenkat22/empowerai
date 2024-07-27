@@ -14,7 +14,7 @@ const tabs = [
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const isActive = (path) => router.pathname === path;
+  const isActive = (path: string) => router.pathname === path;
 
   return (
     <header className="bg-white shadow-md w-full">
