@@ -50,6 +50,7 @@ const Navbar = () => {
               className="text-gray-800 hover:text-gray-600" 
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
               <CiMenuBurger size={22} />
             </button>
