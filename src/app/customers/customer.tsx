@@ -1,5 +1,5 @@
-import Layout from '@/components/Layout'
 import { useState, useEffect, useCallback } from 'react'
+import Layout from '../components/Layout';
 
 interface User {
   id: number;

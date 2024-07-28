@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
-import Layout from '@/components/Layout'
+import Layout from '../components/Layout'
 
 export default function Login() {
   const [email, setEmail] = useState('')
