@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from 'react'
 import Layout from '@/app/components/Layout'
@@ -7,6 +6,7 @@ import { login, signup } from '@/app/lib/supabase/actions'
 export default function Login() {
 
   return (
+  
     <form>
       <label htmlFor="email">Email:</label>
       <input id="email" name="email" type="email" required />
@@ -15,5 +15,7 @@ export default function Login() {
       <button formAction={login}>Log in</button>
       <button formAction={signup}>Sign up</button>
     </form>
+
+
   )
 }

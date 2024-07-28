@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import Image from "next/image";
 import { usePathname } from "next/navigation"; // Import usePathname
+import { createClient } from "../lib/supabase/client";
 
 type Tab = {
   name: string;
@@ -19,10 +20,26 @@ const tabs: Tab[] = [
   { name: "Login", path: "/login" },
 ];
 
-const Navbar = () => {
+export default function Navbar() {
   const pathname = usePathname(); // Use usePathname to get the current path
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<any>(null); // Add state for user data
   const isActive = (path: string) => pathname === path; // Compare path with pathname
+
+  useEffect(() => {
+    const supabase = createClient();
+    const fetchUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error("Error fetching user:", error);
+      } else {
+        setUser(data);
+      }
+    };
+    fetchUser();
+    console.log(user);
+
+  }, []);
 
   return (
     <header className="bg-white shadow-md w-full">
@@ -82,6 +99,4 @@ const Navbar = () => {
       </nav>
     </header>
   );
-};
-
-export default Navbar;
+}
