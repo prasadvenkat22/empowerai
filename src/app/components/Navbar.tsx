@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation"; // Import usePathname
 
 type Tab = {
   name: string;
@@ -20,9 +20,9 @@ const tabs: Tab[] = [
 ];
 
 const Navbar = () => {
-  const router = useRouter();
+  const pathname = usePathname(); // Use usePathname to get the current path
   const [isOpen, setIsOpen] = useState(false);
-  const isActive = (path: string) => router.pathname === path;
+  const isActive = (path: string) => pathname === path; // Compare path with pathname
 
   return (
     <header className="bg-white shadow-md w-full">
