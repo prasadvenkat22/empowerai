@@ -16,8 +16,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <SessionContextProvider 
       supabaseClient={supabase}
       initialSession={pageProps.initialSession}
-    >
-      <Navbar /> 
+    >      <Navbar />
+
       <Layout>
         <Component {...pageProps} />
       </Layout>
