@@ -38,8 +38,8 @@ export default function Navbar() {
     };
     fetchUser();
     console.log(user);
-
   }, []);
+  console.log(user?.user.email)
 
   return (
     <header className="bg-white shadow-md w-full">
@@ -47,11 +47,17 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div>
             <Link href="/" aria-label="Home">
-              <Image src="/logo.svg" alt="EBI Logo" width={150} height={40} priority />
+              <Image
+                src="/logo.svg"
+                alt="EBI Logo"
+                width={150}
+                height={40}
+                priority
+              />
             </Link>
           </div>
           <div className="hidden md:flex space-x-4">
-            {tabs.map((tab) => (
+            {(user ? tabs.slice(0, tabs.length - 1) : tabs).map((tab) => (
               <Link
                 key={tab.name}
                 href={tab.path}
@@ -64,10 +70,17 @@ export default function Navbar() {
                 {tab.name}
               </Link>
             ))}
+            {user && 
+            (
+              <div className="py-1 text-lg bg-slate-200 rounded-full p-3">
+                {user.user.email[0]}
+              </div>
+            )
+           }
           </div>
           <div className="md:hidden">
-            <button 
-              className="text-gray-800 hover:text-gray-600" 
+            <button
+              className="text-gray-800 hover:text-gray-600"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
