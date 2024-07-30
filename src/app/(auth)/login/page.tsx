@@ -15,16 +15,18 @@ export default function Login() {
     const supabase = createClient();
     const fetchUser = async () => {
       const { data, error } = await supabase.auth.getUser();
-      if(data){
-        router.push("/")
+      if(data?.user !== null){
+       router.push("/")
       }else{
-        console.log("Not here");
-        
+        console.log("Second");
+        //router.push("/")
       }
+      console.log(data.user);
+
     };
+
     fetchUser();
   }, []);
-
   return (
     <form className="space-y-4 p-4 bg-gray-100 rounded shadow-md max-w-md mx-auto">
       <label

@@ -6,6 +6,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import Image from "next/image";
 import { usePathname } from "next/navigation"; // Import usePathname
 import { createClient } from "../lib/supabase/client";
+import { Avatar } from "./Avatar";
 
 type Tab = {
   name: string;
@@ -72,9 +73,7 @@ export default function Navbar() {
             ))}
             {user && 
             (
-              <div className="py-1 text-lg bg-slate-200 rounded-full p-3">
-                {user.user.email[0]}
-              </div>
+              <Avatar />
             )
            }
           </div>
