@@ -95,9 +95,13 @@ export default function CustomersPage() {
         setNewCustomer({ name: '', email: '' });
       }
       fetchCustomers();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error submitting customer:', error);
-      alert(`An error occurred while submitting the customer: ${error.message}`);
+      if (error instanceof Error) {
+        alert(`An error occurred while submitting the customer: ${error.message}`);
+      } else {
+        alert('An unknown error occurred while submitting the customer');
+      }
     }
   };
 
