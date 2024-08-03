@@ -45,16 +45,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-xs">
-        {error && <div className="text-red-500 mb-4">{error}</div>}
-        <form onSubmit={handleLogin} className="mb-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
+        <form onSubmit={handleLogin} className="mb-6 space-y-4">
           <Input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mb-4"
             disabled={isLoading}
           />
           <Input
@@ -62,16 +62,23 @@ export default function LoginPage() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mb-4"
             disabled={isLoading}
           />
-          <Button type="submit" className="w-full mb-4" disabled={isLoading}>
+          <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'Log in'}
           </Button>
         </form>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-gray-500">Or</span>
+          </div>
+        </div>
         <Button
           onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center"
+          className="w-full mt-6 flex items-center justify-center"
           variant="outline"
           disabled={isLoading}
         >
