@@ -149,6 +149,13 @@ export default function CustomersPage() {
               <TableHead>Status</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>File Type</TableHead>
+              <TableHead>File Name</TableHead>
+              <TableHead>File Size (MB)</TableHead>
+              <TableHead>Rows</TableHead>
+              <TableHead>Columns</TableHead>
+              <TableHead>Tags</TableHead>
+              <TableHead>File Path</TableHead>
+              <TableHead>Image URL</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -164,6 +171,13 @@ export default function CustomersPage() {
                 <TableCell>{customer.status ? 'Active' : 'Inactive'}</TableCell>
                 <TableCell>{new Date(customer.date).toLocaleDateString()}</TableCell>
                 <TableCell>{customer.filetype.type}</TableCell>
+                <TableCell>{customer.filetype.name}</TableCell>
+                <TableCell>{customer.filetype.SizeinMB}</TableCell>
+                <TableCell>{customer.filetype.rows}</TableCell>
+                <TableCell>{customer.filetype.columns}</TableCell>
+                <TableCell>{customer.filetype.tags.join(', ')}</TableCell>
+                <TableCell>{customer.filetype.path.filename}</TableCell>
+                <TableCell>{customer.imageUrl}</TableCell>
                 <TableCell>
                   <Button onClick={() => handleEdit(customer)} className="mr-2">Edit</Button>
                   <Button onClick={() => handleDelete(customer._id)} variant="destructive">Delete</Button>
