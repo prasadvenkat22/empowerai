@@ -6,8 +6,14 @@ export const metadata: Metadata = {
   description: 'Empower BI specializes in cloud consulting, AI development, database support, and web application development for Azure, AWS, GCP, and more.',
 }
 
+interface Specialty {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 export default function HomePage() {
-  const specialties = [
+  const specialties: Specialty[] = [
     { title: "Cloud Consulting", description: "Support for Azure, AWS, GCP applications", icon: "☁️" },
     { title: "AI Development", description: "Generative AI and Chat application development with RAG, Knowledge Graphs and Structured data", icon: "🤖" },
     { title: "Database Support", description: "Offshore and onshore support for Snowflake, Azure SQL, BigQuery, Databricks, MongoDB and Postgres", icon: "🗄️" },
