@@ -35,7 +35,32 @@ interface Customer {
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [newCustomer, setNewCustomer] = useState({ name: '', email: '' });
+  const [newCustomer, setNewCustomer] = useState<Partial<Customer>>({
+    name: '',
+    email: '',
+    password: '',
+    tenantdb: '',
+    client: '',
+    clientid: 0,
+    application: '',
+    role: '',
+    status: false,
+    date: '',
+    filetype: {
+      type: '',
+      name: '',
+      description: '',
+      SizeinMB: 0,
+      rows: 0,
+      columns: 0,
+      tags: [],
+      path: {
+        url: '',
+        filename: '',
+      },
+    },
+    imageUrl: '',
+  });
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -60,12 +85,25 @@ export default function CustomersPage() {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    if (editingCustomer) {
-      setEditingCustomer({ ...editingCustomer, [name]: value });
+    const updateCustomer = editingCustomer ? setEditingCustomer : setNewCustomer;
+    
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      updateCustomer(prev => ({
+        ...prev,
+        [parent]: {
+          ...prev[parent as keyof Customer],
+          [child]: value
+        }
+      }));
+    } else if (name === 'status') {
+      updateCustomer(prev => ({ ...prev, [name]: value === 'true' }));
+    } else if (name === 'clientid') {
+      updateCustomer(prev => ({ ...prev, [name]: parseInt(value) }));
     } else {
-      setNewCustomer({ ...newCustomer, [name]: value });
+      updateCustomer(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -93,7 +131,32 @@ export default function CustomersPage() {
           const errorText = await response.text();
           throw new Error(`Failed to add customer: ${errorText}`);
         }
-        setNewCustomer({ name: '', email: '' });
+        setNewCustomer({
+          name: '',
+          email: '',
+          password: '',
+          tenantdb: '',
+          client: '',
+          clientid: 0,
+          application: '',
+          role: '',
+          status: false,
+          date: '',
+          filetype: {
+            type: '',
+            name: '',
+            description: '',
+            SizeinMB: 0,
+            rows: 0,
+            columns: 0,
+            tags: [],
+            path: {
+              url: '',
+              filename: '',
+            },
+          },
+          imageUrl: '',
+        });
       }
       fetchCustomers();
     } catch (error: unknown) {
@@ -119,24 +182,154 @@ export default function CustomersPage() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Customers</h1>
       
-      <form onSubmit={handleSubmit} className="mb-4">
+      <form onSubmit={handleSubmit} className="mb-4 grid grid-cols-2 gap-4">
         <Input
           type="text"
           name="name"
-          value={editingCustomer ? editingCustomer.name : newCustomer.name}
+          value={editingCustomer?.name || newCustomer.name}
           onChange={handleInputChange}
           placeholder="Name"
-          className="mb-2"
         />
         <Input
           type="email"
           name="email"
-          value={editingCustomer ? editingCustomer.email : newCustomer.email}
+          value={editingCustomer?.email || newCustomer.email}
           onChange={handleInputChange}
           placeholder="Email"
-          className="mb-2"
         />
-        <Button type="submit">{editingCustomer ? 'Update' : 'Add'} Customer</Button>
+        <Input
+          type="password"
+          name="password"
+          value={editingCustomer?.password || newCustomer.password}
+          onChange={handleInputChange}
+          placeholder="Password"
+        />
+        <Input
+          type="text"
+          name="tenantdb"
+          value={editingCustomer?.tenantdb || newCustomer.tenantdb}
+          onChange={handleInputChange}
+          placeholder="Tenant DB"
+        />
+        <Input
+          type="text"
+          name="client"
+          value={editingCustomer?.client || newCustomer.client}
+          onChange={handleInputChange}
+          placeholder="Client"
+        />
+        <Input
+          type="number"
+          name="clientid"
+          value={editingCustomer?.clientid || newCustomer.clientid}
+          onChange={handleInputChange}
+          placeholder="Client ID"
+        />
+        <Input
+          type="text"
+          name="application"
+          value={editingCustomer?.application || newCustomer.application}
+          onChange={handleInputChange}
+          placeholder="Application"
+        />
+        <Input
+          type="text"
+          name="role"
+          value={editingCustomer?.role || newCustomer.role}
+          onChange={handleInputChange}
+          placeholder="Role"
+        />
+        <select
+          name="status"
+          value={editingCustomer?.status?.toString() || newCustomer.status?.toString()}
+          onChange={handleInputChange}
+          className="border p-2 rounded"
+        >
+          <option value="true">Active</option>
+          <option value="false">Inactive</option>
+        </select>
+        <Input
+          type="date"
+          name="date"
+          value={editingCustomer?.date || newCustomer.date}
+          onChange={handleInputChange}
+        />
+        <Input
+          type="text"
+          name="filetype.type"
+          value={editingCustomer?.filetype?.type || newCustomer.filetype?.type}
+          onChange={handleInputChange}
+          placeholder="File Type"
+        />
+        <Input
+          type="text"
+          name="filetype.name"
+          value={editingCustomer?.filetype?.name || newCustomer.filetype?.name}
+          onChange={handleInputChange}
+          placeholder="File Name"
+        />
+        <Input
+          type="text"
+          name="filetype.description"
+          value={editingCustomer?.filetype?.description || newCustomer.filetype?.description}
+          onChange={handleInputChange}
+          placeholder="File Description"
+        />
+        <Input
+          type="number"
+          name="filetype.SizeinMB"
+          value={editingCustomer?.filetype?.SizeinMB || newCustomer.filetype?.SizeinMB}
+          onChange={handleInputChange}
+          placeholder="File Size (MB)"
+        />
+        <Input
+          type="number"
+          name="filetype.rows"
+          value={editingCustomer?.filetype?.rows || newCustomer.filetype?.rows}
+          onChange={handleInputChange}
+          placeholder="Rows"
+        />
+        <Input
+          type="number"
+          name="filetype.columns"
+          value={editingCustomer?.filetype?.columns || newCustomer.filetype?.columns}
+          onChange={handleInputChange}
+          placeholder="Columns"
+        />
+        <Input
+          type="text"
+          name="filetype.tags"
+          value={editingCustomer?.filetype?.tags?.join(', ') || newCustomer.filetype?.tags?.join(', ')}
+          onChange={(e) => handleInputChange({
+            target: {
+              name: e.target.name,
+              value: e.target.value.split(', ')
+            }
+          } as React.ChangeEvent<HTMLInputElement>)}
+          placeholder="Tags (comma-separated)"
+        />
+        <Input
+          type="text"
+          name="filetype.path.url"
+          value={editingCustomer?.filetype?.path?.url || newCustomer.filetype?.path?.url}
+          onChange={handleInputChange}
+          placeholder="File URL"
+        />
+        <Input
+          type="text"
+          name="filetype.path.filename"
+          value={editingCustomer?.filetype?.path?.filename || newCustomer.filetype?.path?.filename}
+          onChange={handleInputChange}
+          placeholder="File Path"
+        />
+        <Input
+          type="text"
+          name="imageUrl"
+          value={editingCustomer?.imageUrl || newCustomer.imageUrl}
+          onChange={handleInputChange}
+          placeholder="Image URL"
+        />
+        <Button type="submit" className="col-span-2">{editingCustomer ? 'Update' : 'Add'} Customer</Button>
       </form>
 
       {isLoading ? (
