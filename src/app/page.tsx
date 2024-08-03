@@ -1,6 +1,10 @@
-import Head from 'next/head'
 import Layout from './components/Layout'
+import { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  title: 'Empower BI - Cloud Consulting and AI Development Services',
+  description: 'Empower BI specializes in cloud consulting, AI development, database support, and web application development for Azure, AWS, GCP, and more.',
+}
 
 export default function HomePage() {
   const specialties = [
@@ -17,10 +21,6 @@ export default function HomePage() {
 
   return (
     <Layout>
-      <Head>
-        <title>Empower BI - Cloud Consulting and AI Development Services</title>
-        <meta name="description" content="Empower BI specializes in cloud consulting, AI development, database support, and web application development for Azure, AWS, GCP, and more." />
-      </Head>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower BI</h1>
         <p className="text-xl text-gray-600 text-center mb-12">We specialize in the following services:</p>
