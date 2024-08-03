@@ -182,7 +182,7 @@ export default function CustomersPage() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Customers</h1>
       
-      <form onSubmit={handleSubmit} className="mb-4 grid grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="mb-4 grid grid-cols-3 gap-4">
         <Input
           type="text"
           name="name"
@@ -239,15 +239,19 @@ export default function CustomersPage() {
           onChange={handleInputChange}
           placeholder="Role"
         />
-        <select
-          name="status"
-          value={editingCustomer?.status?.toString() || newCustomer.status?.toString()}
-          onChange={handleInputChange}
-          className="border p-2 rounded"
-        >
-          <option value="true">Active</option>
-          <option value="false">Inactive</option>
-        </select>
+        <div className="flex flex-col">
+          <label htmlFor="status" className="mb-1">Status</label>
+          <select
+            id="status"
+            name="status"
+            value={editingCustomer?.status?.toString() || newCustomer.status?.toString()}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+          >
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+          </select>
+        </div>
         <Input
           type="date"
           name="date"
