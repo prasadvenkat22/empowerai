@@ -54,6 +54,7 @@ export default function CustomersPage() {
       setCustomers(data);
     } catch (error) {
       console.error('Error fetching customers:', error);
+      setCustomers([]); // Set customers to an empty array if there's an error
     } finally {
       setIsLoading(false);
     }
@@ -174,13 +175,13 @@ export default function CustomersPage() {
                 <TableCell>{customer.role}</TableCell>
                 <TableCell>{customer.status ? 'Active' : 'Inactive'}</TableCell>
                 <TableCell>{new Date(customer.date).toLocaleDateString()}</TableCell>
-                <TableCell>{customer.filetype.type}</TableCell>
-                <TableCell>{customer.filetype.name}</TableCell>
-                <TableCell>{customer.filetype.SizeinMB}</TableCell>
-                <TableCell>{customer.filetype.rows}</TableCell>
-                <TableCell>{customer.filetype.columns}</TableCell>
-                <TableCell>{customer.filetype.tags.join(', ')}</TableCell>
-                <TableCell>{customer.filetype.path.filename}</TableCell>
+                <TableCell>{customer.filetype?.type || 'N/A'}</TableCell>
+                <TableCell>{customer.filetype?.name || 'N/A'}</TableCell>
+                <TableCell>{customer.filetype?.SizeinMB || 'N/A'}</TableCell>
+                <TableCell>{customer.filetype?.rows || 'N/A'}</TableCell>
+                <TableCell>{customer.filetype?.columns || 'N/A'}</TableCell>
+                <TableCell>{customer.filetype?.tags?.join(', ') || 'N/A'}</TableCell>
+                <TableCell>{customer.filetype?.path?.filename || 'N/A'}</TableCell>
                 <TableCell>{customer.imageUrl}</TableCell>
                 <TableCell>
                   <Button onClick={() => handleEdit(customer)} className="mr-2">Edit</Button>
