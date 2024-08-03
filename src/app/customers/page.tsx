@@ -9,7 +9,28 @@ interface Customer {
   _id: string;
   name: string;
   email: string;
-  phone: string;
+  password: string;
+  tenantdb: string;
+  client: string;
+  clientid: number;
+  application: string;
+  role: string;
+  status: boolean;
+  date: string;
+  filetype: {
+    type: string;
+    name: string;
+    description: string;
+    SizeinMB: number;
+    rows: number;
+    columns: number;
+    tags: string[];
+    path: {
+      url: string;
+      filename: string;
+    };
+  };
+  imageUrl: string;
 }
 
 export default function CustomersPage() {
@@ -25,7 +46,7 @@ export default function CustomersPage() {
   const fetchCustomers = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/customers');
+      const response = await fetch('http://165.227.97.62:8000/CRUD/Mongodb APIs/');
       const data = await response.json();
       setCustomers(data);
     } catch (error) {
@@ -46,22 +67,33 @@ export default function CustomersPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingCustomer) {
-      await fetch(`/api/customers/${editingCustomer._id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editingCustomer),
-      });
-      setEditingCustomer(null);
-    } else {
-      await fetch('/api/customers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newCustomer),
-      });
-      setNewCustomer({ name: '', email: '', phone: '' });
+    try {
+      if (editingCustomer) {
+        const response = await fetch(`http://165.227.97.62:8000/CRUD/Mongodb APIs/${editingCustomer._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(editingCustomer),
+        });
+        if (!response.ok) {
+          throw new Error('Failed to update customer');
+        }
+        setEditingCustomer(null);
+      } else {
+        const response = await fetch('http://165.227.97.62:8000/CRUD/Mongodb APIs/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newCustomer),
+        });
+        if (!response.ok) {
+          throw new Error('Failed to add customer');
+        }
+        setNewCustomer({ name: '', email: '', phone: '' });
+      }
+      fetchCustomers();
+    } catch (error) {
+      console.error('Error submitting customer:', error);
+      alert('An error occurred while submitting the customer. Please try again.');
     }
-    fetchCustomers();
   };
 
   const handleDelete = async (id: string) => {
@@ -113,7 +145,11 @@ export default function CustomersPage() {
             <TableRow>
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
-              <TableHead>Phone</TableHead>
+              <TableHead>Client</TableHead>
+              <TableHead>Application</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Date</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -122,7 +158,11 @@ export default function CustomersPage() {
               <TableRow key={customer._id}>
                 <TableCell>{customer.name}</TableCell>
                 <TableCell>{customer.email}</TableCell>
-                <TableCell>{customer.phone}</TableCell>
+                <TableCell>{customer.client}</TableCell>
+                <TableCell>{customer.application}</TableCell>
+                <TableCell>{customer.role}</TableCell>
+                <TableCell>{customer.status ? 'Active' : 'Inactive'}</TableCell>
+                <TableCell>{new Date(customer.date).toLocaleDateString()}</TableCell>
                 <TableCell>
                   <Button onClick={() => handleEdit(customer)} className="mr-2">Edit</Button>
                   <Button onClick={() => handleDelete(customer._id)} variant="destructive">Delete</Button>
