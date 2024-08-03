@@ -35,7 +35,7 @@ interface Customer {
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [newCustomer, setNewCustomer] = useState({ name: '', email: '', phone: '' });
+  const [newCustomer, setNewCustomer] = useState({ name: '', email: '' });
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -87,7 +87,7 @@ export default function CustomersPage() {
         if (!response.ok) {
           throw new Error('Failed to add customer');
         }
-        setNewCustomer({ name: '', email: '', phone: '' });
+        setNewCustomer({ name: '', email: '' });
       }
       fetchCustomers();
     } catch (error) {
@@ -124,14 +124,6 @@ export default function CustomersPage() {
           value={editingCustomer ? editingCustomer.email : newCustomer.email}
           onChange={handleInputChange}
           placeholder="Email"
-          className="mb-2"
-        />
-        <Input
-          type="tel"
-          name="phone"
-          value={editingCustomer ? editingCustomer.phone : newCustomer.phone}
-          onChange={handleInputChange}
-          placeholder="Phone"
           className="mb-2"
         />
         <Button type="submit">{editingCustomer ? 'Update' : 'Add'} Customer</Button>
