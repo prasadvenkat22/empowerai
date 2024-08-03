@@ -35,6 +35,7 @@ interface Customer {
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [newCustomer, setNewCustomer] = useState<Partial<Customer>>({
     name: '',
     email: '',
@@ -109,6 +110,7 @@ export default function CustomersPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       if (editingCustomer) {
         const response = await fetch(`http://165.227.97.62:8000/CRUD/Mongodb APIs/${editingCustomer._id}`, {
@@ -158,7 +160,7 @@ export default function CustomersPage() {
           imageUrl: '',
         });
       }
-      fetchCustomers();
+      await fetchCustomers();
     } catch (error: unknown) {
       console.error('Error submitting customer:', error);
       if (error instanceof Error) {
@@ -166,6 +168,8 @@ export default function CustomersPage() {
       } else {
         alert('An unknown error occurred while submitting the customer');
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -182,7 +186,7 @@ export default function CustomersPage() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Customers</h1>
       
-      <form onSubmit={handleSubmit} className="mb-4 grid grid-cols-3 gap-4">
+      <form onSubmit={handleSubmit} className="mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <Input
           type="text"
           name="name"
@@ -333,7 +337,9 @@ export default function CustomersPage() {
           onChange={handleInputChange}
           placeholder="Image URL"
         />
-        <Button type="submit" className="col-span-2">{editingCustomer ? 'Update' : 'Add'} Customer</Button>
+        <Button type="submit" className="col-span-full" disabled={isSubmitting}>
+          {isSubmitting ? 'Processing...' : (editingCustomer ? 'Update' : 'Add')} Customer
+        </Button>
       </form>
 
       {isLoading ? (
