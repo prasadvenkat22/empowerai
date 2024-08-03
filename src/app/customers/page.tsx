@@ -10,6 +10,7 @@ interface Customer {
   name: string;
   email: string;
   phone: string;
+}
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
