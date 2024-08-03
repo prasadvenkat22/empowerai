@@ -47,6 +47,9 @@ export default function CustomersPage() {
     setIsLoading(true);
     try {
       const response = await fetch('http://165.227.97.62:8000/CRUD/Mongodb APIs/');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setCustomers(data);
     } catch (error) {
@@ -75,7 +78,8 @@ export default function CustomersPage() {
           body: JSON.stringify(editingCustomer),
         });
         if (!response.ok) {
-          throw new Error('Failed to update customer');
+          const errorText = await response.text();
+          throw new Error(`Failed to update customer: ${errorText}`);
         }
         setEditingCustomer(null);
       } else {
@@ -85,14 +89,15 @@ export default function CustomersPage() {
           body: JSON.stringify(newCustomer),
         });
         if (!response.ok) {
-          throw new Error('Failed to add customer');
+          const errorText = await response.text();
+          throw new Error(`Failed to add customer: ${errorText}`);
         }
         setNewCustomer({ name: '', email: '' });
       }
       fetchCustomers();
     } catch (error) {
       console.error('Error submitting customer:', error);
-      alert('An error occurred while submitting the customer. Please try again.');
+      alert(`An error occurred while submitting the customer: ${error.message}`);
     }
   };
 
@@ -138,10 +143,12 @@ export default function CustomersPage() {
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Client</TableHead>
+              <TableHead>Client ID</TableHead>
               <TableHead>Application</TableHead>
               <TableHead>Role</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Date</TableHead>
+              <TableHead>File Type</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -151,10 +158,12 @@ export default function CustomersPage() {
                 <TableCell>{customer.name}</TableCell>
                 <TableCell>{customer.email}</TableCell>
                 <TableCell>{customer.client}</TableCell>
+                <TableCell>{customer.clientid}</TableCell>
                 <TableCell>{customer.application}</TableCell>
                 <TableCell>{customer.role}</TableCell>
                 <TableCell>{customer.status ? 'Active' : 'Inactive'}</TableCell>
                 <TableCell>{new Date(customer.date).toLocaleDateString()}</TableCell>
+                <TableCell>{customer.filetype.type}</TableCell>
                 <TableCell>
                   <Button onClick={() => handleEdit(customer)} className="mr-2">Edit</Button>
                   <Button onClick={() => handleDelete(customer._id)} variant="destructive">Delete</Button>
