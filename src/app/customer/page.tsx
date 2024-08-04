@@ -26,6 +26,7 @@ export default function Customer() {
   const [showInsertForm, setShowInsertForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [newUser, setNewUser] = useState<NewUser>({ email: '', name: '', password: '', role: 'user', application: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -73,6 +74,8 @@ export default function Customer() {
       if (!window.confirm('Are you sure you want to update this user?')) {
         return;
       }
+      setIsSubmitting(true);
+      setError(null);
       const response = await fetch(`http://165.227.97.62:8000/CRUD/users/${user.id}`, {
         method: 'PUT',
         headers: {
@@ -81,15 +84,17 @@ export default function Customer() {
         body: JSON.stringify(user),
       });
       if (!response.ok) {
-        throw new Error('Failed to update user');
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to update user');
       }
       await fetchUsers();
       setShowUpdateForm(false);
       setSelectedUser(null);
-      setError(null);
     } catch (error) {
       console.error('Error updating user:', error);
-      setError('Failed to update user. Please try again later.');
+      setError(error instanceof Error ? error.message : 'Failed to update user. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   }, [fetchUsers]);
 
@@ -117,6 +122,7 @@ export default function Customer() {
         return;
       }
 
+      setIsSubmitting(true);
       setError(null);
       console.log('Attempting to insert user:', newUser);
 
@@ -151,13 +157,9 @@ export default function Customer() {
       setNewUser({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
     } catch (error) {
       console.error('Error inserting user:', error);
-      if (error instanceof Error) {
-        setError(error.message);
-      } else if (typeof error === 'object' && error !== null) {
-        setError(JSON.stringify(error));
-      } else {
-        setError('Failed to insert user. Please try again later.');
-      }
+      setError(error instanceof Error ? error.message : 'Failed to insert user. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -186,6 +188,7 @@ export default function Customer() {
             onClick={() => {
               setShowInsertForm(!showInsertForm);
               setShowUpdateForm(false);
+              setError(null);
             }}
           >
             {showInsertForm ? 'Hide Insert Form' : 'Add New Customer'}
@@ -195,6 +198,7 @@ export default function Customer() {
             onClick={() => {
               setShowUpdateForm(!showUpdateForm);
               setShowInsertForm(false);
+              setError(null);
             }}
           >
             {showUpdateForm ? 'Hide Update Form' : 'Update Customer'}
@@ -237,9 +241,9 @@ export default function Customer() {
                   <button
                     className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-50"
                     onClick={() => handleUpdate(selectedUser)}
-                    disabled={selectedUser.email === users.find(u => u.id === selectedUser.id)?.email}
+                    disabled={selectedUser.email === users.find(u => u.id === selectedUser.id)?.email || isSubmitting}
                   >
-                    Update
+                    {isSubmitting ? 'Updating...' : 'Update'}
                   </button>
                   <button
                     className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
@@ -310,10 +314,11 @@ export default function Customer() {
                 ))}
               </select>
               <button
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-50"
                 onClick={handleInsert}
+                disabled={isSubmitting}
               >
-                Insert
+                {isSubmitting ? 'Inserting...' : 'Insert'}
               </button>
             </div>
           </div>
