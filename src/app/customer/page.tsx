@@ -32,6 +32,10 @@ export default function Customer() {
     fetchApplications();
   }, []);
 
+  const normalizeApplicationData = (app: any): string => {
+    return typeof app === 'string' ? app : app.name || '';
+  };
+
   const fetchApplications = async () => {
     try {
       const response = await fetch('http://165.227.97.62:8000/CRUD/applications/');
@@ -39,8 +43,7 @@ export default function Customer() {
         throw new Error('Failed to fetch applications');
       }
       const data = await response.json();
-      // Ensure we're setting an array of strings or objects with a 'name' property
-      setApplications(data.map((app: any) => typeof app === 'string' ? app : app.name));
+      setApplications(data.map(normalizeApplicationData));
     } catch (error) {
       console.error('Error fetching applications:', error);
       setError('Failed to fetch applications. Please try again later.');
