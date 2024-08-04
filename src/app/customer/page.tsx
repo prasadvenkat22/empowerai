@@ -19,16 +19,32 @@ interface NewUser {
 
 export default function Customer() {
   const [users, setUsers] = useState<User[]>([]);
+  const [applications, setApplications] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [showInsertForm, setShowInsertForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [newUser, setNewUser] = useState<NewUser>({ email: '', name: '', password: '', role: 'user', application: 'EBI' });
+  const [newUser, setNewUser] = useState<NewUser>({ email: '', name: '', password: '', role: 'user', application: '' });
 
   useEffect(() => {
     fetchUsers();
+    fetchApplications();
   }, []);
+
+  const fetchApplications = async () => {
+    try {
+      const response = await fetch('http://165.227.97.62:8000/CRUD/applications/');
+      if (!response.ok) {
+        throw new Error('Failed to fetch applications');
+      }
+      const data = await response.json();
+      setApplications(data);
+    } catch (error) {
+      console.error('Error fetching applications:', error);
+      setError('Failed to fetch applications. Please try again later.');
+    }
+  };
 
   const fetchUsers = async () => {
     try {
@@ -278,6 +294,16 @@ export default function Customer() {
               >
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
+              </select>
+              <select
+                value={newUser.application}
+                onChange={(e) => setNewUser({...newUser, application: e.target.value})}
+                className="w-full border rounded px-3 py-2"
+              >
+                <option value="">Select an application</option>
+                {applications.map((app, index) => (
+                  <option key={index} value={app}>{app}</option>
+                ))}
               </select>
               <button
                 className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
