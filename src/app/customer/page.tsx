@@ -39,7 +39,8 @@ export default function Customer() {
         throw new Error('Failed to fetch applications');
       }
       const data = await response.json();
-      setApplications(data);
+      // Ensure we're setting an array of strings or objects with a 'name' property
+      setApplications(data.map((app: any) => typeof app === 'string' ? app : app.name));
     } catch (error) {
       console.error('Error fetching applications:', error);
       setError('Failed to fetch applications. Please try again later.');
@@ -302,7 +303,7 @@ export default function Customer() {
               >
                 <option value="">Select an application</option>
                 {applications.map((app, index) => (
-                  <option key={index} value={app}>{app}</option>
+                  <option key={index} value={app.name || app}>{app.name || app}</option>
                 ))}
               </select>
               <button
