@@ -84,6 +84,10 @@ export default function Login() {
         result = await signup(formData);
       } catch (fetchError) {
         console.error("Fetch error during signup:", fetchError);
+        if (fetchError instanceof Error) {
+          console.error("Fetch error message:", fetchError.message);
+          console.error("Fetch error stack:", fetchError.stack);
+        }
         throw new Error("Network error occurred. Please check your internet connection and try again.");
       }
       console.log("Signup result:", result);
@@ -93,6 +97,9 @@ export default function Login() {
       } else if (result?.success) {
         console.log("Signup successful");
         setError("Signup successful. Please check your email for verification.");
+      } else {
+        console.error("Unexpected result format:", result);
+        setError("An unexpected error occurred. Please try again.");
       }
     } catch (error) {
       console.error("Unexpected signup error:", error);
