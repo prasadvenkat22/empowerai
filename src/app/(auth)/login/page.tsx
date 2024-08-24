@@ -86,7 +86,7 @@ export default function Login() {
           <span className="block sm:inline">{error}</span>
         </div>
       )}
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
         <label
           className="block text-sm font-medium text-gray-700"
           htmlFor="email"
@@ -118,7 +118,7 @@ export default function Login() {
         <div className="flex space-x-4">
           <Button
             className="w-full bg-indigo-600 text-white hover:bg-indigo-700"
-            formAction={handleLogin}
+            onClick={() => handleLogin(new FormData(document.querySelector('form') as HTMLFormElement))}
             disabled={loading}
             aria-label="Log in"
           >
@@ -126,7 +126,7 @@ export default function Login() {
           </Button>
           <Button
             className="w-full bg-gray-600 text-white hover:bg-gray-700"
-            formAction={handleSignup}
+            onClick={() => handleSignup(new FormData(document.querySelector('form') as HTMLFormElement))}
             disabled={loading}
             aria-label="Sign up"
           >
