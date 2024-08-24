@@ -3,7 +3,7 @@ import '../styles/globals.css';
 import { ReactNode } from 'react';
 import TitleUpdater from './components/TitleUpdater';
 import Navbar from './components/Navbar';
-import UniqueHomeLink from '@/components/HomeLink';
+import UniqueHomeLink from '@/components/UniqueHomeLink';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const appName = "EBI"; // Define your app name here
