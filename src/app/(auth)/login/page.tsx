@@ -90,6 +90,10 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Unexpected signup error:", error);
+      if (error instanceof Error) {
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
+      }
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
