@@ -1,4 +1,4 @@
-import Layout from './components/Layout'
+import Layout from '@/app/components/Layout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -28,8 +28,12 @@ export default function HomePage() {
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
-        <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower BI</h1>
-        <p className="text-xl text-gray-600 text-center mb-12">We specialize in the following services:</p>
+        <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower AI-BI</h1>
+        <div className='grid' >
+        <p className="text-xl text-gray-600 text-center mb-12">The site for AI / BI development, implementation and Support</p>
+        <p className="text-xl text-gray-600 text-center mb-12">Realize the Power of Genertive AI, Actinalble Data Insights, Business Intelligence and Real Time data Analytics</p>
+        <p className="text-xl text-gray-600 text-center mb-12">Specialize in Cloud technologies, Big Data Engineering and support sevices:</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (
             <div key={index} className="bg-[var(--color-lighter-blue)] overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:border-[var(--color-light-blue)] hover:border-2">
