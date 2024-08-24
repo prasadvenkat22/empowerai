@@ -50,7 +50,12 @@ export default function Login() {
       const result = await login(formData);
       if (result?.error) {
         setError(result.error);
+      } else if (result?.success) {
+        router.push("/");
       }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -63,7 +68,12 @@ export default function Login() {
       const result = await signup(formData);
       if (result?.error) {
         setError(result.error);
+      } else if (result?.success) {
+        setError("Signup successful. Please check your email for verification.");
       }
+    } catch (error) {
+      console.error("Signup error:", error);
+      setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
