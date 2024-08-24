@@ -36,13 +36,24 @@ export async function signup(formData: FormData) {
     password: formData.get('password') as string,
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  try {
+    console.log("Attempting to sign up with Supabase");
+    const { data: signUpData, error } = await supabase.auth.signUp(data)
 
-  if (error) {
-    console.error("Signup error:", error);
-    return { error: error.message };
+    if (error) {
+      console.error("Supabase signup error:", error);
+      return { error: error.message };
+    }
+
+    console.log("Signup successful, data:", signUpData);
+    revalidatePath('/')
+    return { success: true };
+  } catch (error) {
+    console.error("Unexpected error during signup:", error);
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
+    return { error: "An unexpected error occurred. Please try again." };
   }
-
-  revalidatePath('/')
-  return { success: true };
 }
