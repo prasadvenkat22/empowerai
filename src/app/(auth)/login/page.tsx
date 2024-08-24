@@ -65,17 +65,22 @@ export default function Login() {
     try {
       setLoading(true);
       setError(null);
+      console.log("Starting signup process");
       const result = await signup(formData);
+      console.log("Signup result:", result);
       if (result?.error) {
+        console.error("Signup error:", result.error);
         setError(result.error);
       } else if (result?.success) {
+        console.log("Signup successful");
         setError("Signup successful. Please check your email for verification.");
       }
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error("Unexpected signup error:", error);
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
+      console.log("Signup process completed");
     }
   };
   return (
