@@ -70,6 +70,7 @@ export default function Login() {
   };
   return (
     <div className="space-y-4 p-4 bg-gray-100 rounded shadow-md max-w-md mx-auto">
+      <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Login or Sign Up</h2>
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
           <span className="block sm:inline">{error}</span>
