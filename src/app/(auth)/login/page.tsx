@@ -29,6 +29,7 @@ export default function Login() {
       setLoading(true);
       setError(null);
       console.log("Starting Google sign-in process");
+      console.log("Redirect URL:", `${window.location.origin}/auth/callback`);
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -39,10 +40,15 @@ export default function Login() {
         console.error("Supabase Google sign-in error:", error);
         throw error;
       }
-      console.log("Google sign-in successful, data:", data);
+      console.log("Google sign-in initiated successfully");
+      console.log("Auth data:", data);
       // The user will be redirected to Google's login page
     } catch (error) {
       console.error("Error signing in with Google:", error);
+      if (error instanceof Error) {
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
+      }
       setError("Failed to sign in with Google. Please try again.");
     } finally {
       setLoading(false);
