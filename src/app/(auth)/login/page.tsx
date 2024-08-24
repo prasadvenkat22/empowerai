@@ -28,18 +28,25 @@ export default function Login() {
     try {
       setLoading(true);
       setError(null);
-      const { error } = await supabase.auth.signInWithOAuth({
+      console.log("Starting Google sign-in process");
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
         },
       });
-      if (error) throw error;
+      if (error) {
+        console.error("Supabase Google sign-in error:", error);
+        throw error;
+      }
+      console.log("Google sign-in successful, data:", data);
+      // The user will be redirected to Google's login page
     } catch (error) {
       console.error("Error signing in with Google:", error);
       setError("Failed to sign in with Google. Please try again.");
     } finally {
       setLoading(false);
+      console.log("Google sign-in process completed");
     }
   };
 
