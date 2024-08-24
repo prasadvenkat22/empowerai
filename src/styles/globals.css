@@ -1,4 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-light-blue: #e6f3ff;
+  --color-lighter-blue: #f0f8ff;
+}
+
+body {
+  background-color: white;
+}
   
