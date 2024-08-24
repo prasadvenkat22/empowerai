@@ -79,7 +79,13 @@ export default function Login() {
       setLoading(true);
       setError(null);
       console.log("Starting signup process");
-      const result = await signup(formData);
+      let result;
+      try {
+        result = await signup(formData);
+      } catch (fetchError) {
+        console.error("Fetch error during signup:", fetchError);
+        throw new Error("Network error occurred. Please check your internet connection and try again.");
+      }
       console.log("Signup result:", result);
       if (result?.error) {
         console.error("Signup error:", result.error);
@@ -94,7 +100,7 @@ export default function Login() {
         console.error("Error message:", error.message);
         console.error("Error stack:", error.stack);
       }
-      setError("An unexpected error occurred. Please try again.");
+      setError(error instanceof Error ? error.message : "An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
       console.log("Signup process completed");
