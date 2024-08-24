@@ -27,12 +27,12 @@ export default function HomePage() {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower BI</h1>
         <p className="text-xl text-gray-600 text-center mb-12">We specialize in the following services:</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (
-            <div key={index} className="bg-white overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div key={index} className="bg-[var(--color-lighter-blue)] overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:border-[var(--color-light-blue)] hover:border-2">
               <div className="p-6">
                 <div className="text-4xl mb-4">{specialty.icon}</div>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-2">{specialty.title}</h2>
