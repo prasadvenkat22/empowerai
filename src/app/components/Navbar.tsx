@@ -41,7 +41,7 @@ export default function Navbar() {
     fetchUser();
     console.log(user);
   }, []);
-  console.log(user?.user.email)
+  console.log(user?.user?.email)
 
   return (
     <header className="bg-white shadow-md w-full">
