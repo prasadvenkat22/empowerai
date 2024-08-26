@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Empower BI - Cloud Consulting and AI Development Services',
-  description: 'Empower BI specializes in cloud consulting, AI development, database support, and web application development for Azure, AWS, GCP, and more.',
+  description: 'Empower AI / BI cloud consulting - development, multi-cloud / database support',
 }
 
 interface Specialty {
@@ -30,7 +30,7 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower AI-BI</h1>
         <div className='grid gap-4 bg-[var(--color-lighter-blue)] p-6 rounded-lg shadow-md mb-12'>
-        <p className="text-xl text-gray-600 text-center">The site for AI / BI development, implementation and Support - Realize the Power of Generative AI, Actionable Data Insights, Business Intelligence and Real Time data Analytics. We enalbe AI-BI implementions, specialize in Cloud technologies, Big Data Engineering and support services:</p>
+        <p className="text-xl text-gray-600 text-center">Empower AI / BI cloud consulting - development, multi-cloud / database support, web application development in Azure, AWS, and GCP. LLM fine-tuning, RAG Architecture, Lang Chain framworks, Agents and custom develpment. Register for our demo / information by going to registraion page.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (
