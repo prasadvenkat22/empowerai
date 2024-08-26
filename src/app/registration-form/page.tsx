@@ -42,6 +42,7 @@ export default function RegistrationForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      console.log('Submitting form data:', formData);
       const response = await fetch('http://165.227.97.62:8000/CRUD/registrations/', {
         method: 'POST',
         headers: {
@@ -51,15 +52,18 @@ export default function RegistrationForm() {
       });
       
       const data = await response.json();
+      console.log('Response status:', response.status);
+      console.log('Response data:', data);
+      
       if (response.ok) {
         router.push('/registration-response?data=' + encodeURIComponent(JSON.stringify(data)));
       } else {
         console.error('Submission failed:', data);
-        alert('Submission failed. Please try again.');
+        alert(`Submission failed. Error: ${JSON.stringify(data)}`);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+      alert(`An error occurred. Error: ${error instanceof Error ? error.message : String(error)}`);
     }
   };
 
