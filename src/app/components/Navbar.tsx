@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
-import Image from "next/image";
 import { usePathname } from "next/navigation"; // Import usePathname
 import { createClient } from "../lib/supabase/client";
 import { Avatar } from "./Avatar";

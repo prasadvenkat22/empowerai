@@ -11,9 +11,14 @@ export default function RegistrationResponse() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Registration Response</h1>
       {parsedData ? (
-        <pre className="bg-gray-100 p-4 rounded-md overflow-auto">
-          {JSON.stringify(parsedData, null, 2)}
-        </pre>
+        <>
+          <h2 className="text-xl font-semibold mb-2">
+            {parsedData.id ? 'Registration Successful' : 'Registration'}
+          </h2>
+          <pre className="bg-gray-100 p-4 rounded-md overflow-auto">
+            {JSON.stringify(parsedData, null, 2)}
+          </pre>
+        </>
       ) : (
         <p>No data available</p>
       )}

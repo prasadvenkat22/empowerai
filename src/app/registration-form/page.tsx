@@ -20,7 +20,8 @@ export default function RegistrationForm() {
     username: '',
     clientname: '',
     clientemail: '',
-    address: ''
+    address: '',
+    createdate: new Date().toISOString().slice(0, 16) // Default to current datetime
   });
   const [services, setServices] = useState<Service[]>([]);
 
@@ -95,7 +96,7 @@ export default function RegistrationForm() {
               </select>
             ) : (
               <input
-                type={key === 'demodate' ? 'datetime-local' : 'text'}
+                type={key === 'demodate' || key === 'createdate' ? 'datetime-local' : 'text'}
                 id={key}
                 name={key}
                 value={value}
