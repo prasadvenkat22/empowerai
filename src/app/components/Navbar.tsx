@@ -16,8 +16,6 @@ type Tab = {
 const tabs: Tab[] = [
   { name: "Contacts", path: "/contacts" },
   { name: "Customer", path: "/customer" },
-  { name: "Customers", path: "/customers" },
-
   { name: "Service", path: "/service" },
   { name: "Users", path: "/users" },
   { name: "Login", path: "/login" },
