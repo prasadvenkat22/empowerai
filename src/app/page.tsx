@@ -1,5 +1,6 @@
 import Layout from '@/app/components/Layout'
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Empower BI - Cloud Consulting and AI Development Services',
@@ -31,6 +32,11 @@ export default function HomePage() {
         <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower AI-BI</h1>
         <div className='grid gap-4 bg-[var(--color-lighter-blue)] p-6 rounded-lg shadow-md mb-12'>
         <p className="text-xl text-gray-600 text-center">Empower AI / BI cloud consulting - development, multi-cloud / database support, web application development in Azure, AWS, and GCP. LLM fine-tuning, RAG Architecture, Lang Chain framworks, Agents and custom develpment. Register for our demo / information by going to registraion page.</p>
+        </div>
+        <div className="text-center mb-8">
+          <Link href="/registration-form" className="text-blue-500 hover:text-blue-700 text-xl font-semibold">
+            Register for Demo / Information
+          </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (
