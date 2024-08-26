@@ -50,14 +50,16 @@ export default function RegistrationForm() {
         body: JSON.stringify(formData),
       });
       
+      const data = await response.json();
       if (response.ok) {
-        const data = await response.json();
         router.push('/registration-response?data=' + encodeURIComponent(JSON.stringify(data)));
       } else {
-        console.error('Submission failed');
+        console.error('Submission failed:', data);
+        alert('Submission failed. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
+      alert('An error occurred. Please try again.');
     }
   };
 
@@ -94,7 +96,7 @@ export default function RegistrationForm() {
                 name={key}
                 value={value}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 required
                 aria-label={key.charAt(0).toUpperCase() + key.slice(1)}
               />
