@@ -39,11 +39,11 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (
-            <div key={index} className="bg-[var(--color-lighter-blue)] overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:border-[var(--color-light-blue)] hover:border-2">
+            <div key={index} className="bg-white overflow-hidden shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:border-[var(--color-light-blue)] hover:border-2">
               <div className="p-6">
-                <div className="text-4xl mb-4">{specialty.icon}</div>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2">{specialty.title}</h2>
-                <p className="text-gray-600">{specialty.description}</p>
+                <div className="text-4xl mb-4 text-[var(--color-light-blue)]">{specialty.icon}</div>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">{specialty.title}</h2>
+                <p className="text-gray-700">{specialty.description}</p>
               </div>
             </div>
           ))}
