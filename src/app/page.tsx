@@ -32,7 +32,7 @@ export default function HomePage() {
           Empower AI / BI 
         </h1>
         <div className='bg-white p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-12 border border-[var(--color-light-blue)]'>
-          <p className="text-base sm:text-xl text-gray-800 text-left font-bold font-sans">Web and back-end Development for Multi-Cloud environments, offshore / onshore support in Azure, AWS, and GCP. Generative AI: LLM fine-tuning, RAG Architecture, LangChain frameworks, Agents and custom development. Register for our demo / information.</p>
+          <p className="text-base sm:text-xl text-left font-bold font-sans bg-gradient-to-r from-blue-600 to-teal-400 text-transparent bg-clip-text">Web and back-end Development for Multi-Cloud environments, offshore / onshore support in Azure, AWS, and GCP. Generative AI: LLM fine-tuning, RAG Architecture, LangChain frameworks, Agents and custom development. Register for our demo / information.</p>
         </div>
         <div className="text-center mb-8">
           <Link href="/registration-form" className="text-blue-500 hover:text-blue-700 text-lg sm:text-xl font-semibold">
