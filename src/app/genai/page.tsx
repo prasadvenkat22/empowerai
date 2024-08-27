@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function GenAIPage() {
   const [input, setInput] = useState('')
@@ -29,6 +30,9 @@ export default function GenAIPage() {
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
+      <Link href="/" className="text-blue-500 hover:text-blue-700 mb-4 inline-block">
+        ← Return to Home
+      </Link>
       <h1 className="text-3xl font-bold mb-6">Generative AI Interface</h1>
       <form onSubmit={handleSubmit} className="mb-6">
         <textarea
