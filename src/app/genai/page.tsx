@@ -52,7 +52,11 @@ export default function GenAIPage() {
           {isLoading ? 'Processing...' : 'Submit'}
         </button>
       </form>
-      {result && (
+      {isLoading ? (
+        <div className="bg-gray-100 p-4 rounded">
+          <p className="text-gray-600">Processing your request...</p>
+        </div>
+      ) : result && (
         <div className="bg-gray-100 p-4 rounded">
           <h2 className="text-xl font-semibold mb-2">Result:</h2>
           <p>{result}</p>
