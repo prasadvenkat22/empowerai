@@ -1,4 +1,3 @@
-import Layout from '@/app/components/Layout'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -27,7 +26,7 @@ export default function HomePage() {
   ]
 
   return (
-    <Layout>
+    <main>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower AI-BI</h1>
         <div className='grid gap-4 bg-[var(--color-lighter-blue)] p-6 rounded-lg shadow-md mb-12'>
@@ -50,6 +49,6 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-    </Layout>
+    </main>
   )
 }
