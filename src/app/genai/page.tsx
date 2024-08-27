@@ -1,12 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Generative AI - Empower AI-BI',
-  description: 'Interact with our Generative AI model',
-}
 
 export default function GenAIPage() {
   const [input, setInput] = useState('')
