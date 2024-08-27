@@ -29,22 +29,22 @@ export default function GenAIPage() {
   }
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8">
-      <Link href="/" className="text-blue-500 hover:text-blue-700 mb-4 inline-block">
+    <main className="max-w-4xl mx-auto px-4 py-6 sm:py-8">
+      <Link href="/" className="text-blue-500 hover:text-blue-700 mb-4 inline-block text-sm sm:text-base">
         ← Return to Home
       </Link>
-      <h1 className="text-3xl font-bold mb-6">Generative AI Interface</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Generative AI Interface</h1>
       <form onSubmit={handleSubmit} className="mb-6">
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded mb-4"
+          className="w-full p-2 border border-gray-300 rounded mb-4 text-sm sm:text-base"
           rows={4}
           placeholder="Enter your prompt here..."
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          className="w-full sm:w-auto bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors text-sm sm:text-base"
           disabled={isLoading}
         >
           {isLoading ? 'Processing...' : 'Submit'}
@@ -52,12 +52,12 @@ export default function GenAIPage() {
       </form>
       {isLoading ? (
         <div className="bg-gray-100 p-4 rounded">
-          <p className="text-gray-600">Processing your request...</p>
+          <p className="text-gray-600 text-sm sm:text-base">Processing your request...</p>
         </div>
       ) : result && (
         <div className="bg-gray-100 p-4 rounded">
-          <h2 className="text-xl font-semibold mb-2">Result:</h2>
-          <p>{result}</p>
+          <h2 className="text-lg sm:text-xl font-semibold mb-2">Result:</h2>
+          <p className="text-sm sm:text-base">{result}</p>
         </div>
       )}
     </main>

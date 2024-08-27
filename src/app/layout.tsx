@@ -9,10 +9,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en">
-      <body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className="min-h-screen flex flex-col">
         <TitleUpdater appName={appName} /> {/* Include TitleUpdater */}
         <Navbar /> {/* Include Navbar */}
-        {children}
+        <div className="flex-grow">
+          {children}
+        </div>
       </body>
     </html>
   );
