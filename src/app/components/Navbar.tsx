@@ -18,6 +18,7 @@ const tabs: Tab[] = [
   { name: "Customer", path: "/customer" },
   { name: "Service", path: "/service" },
   { name: "Users", path: "/users" },
+  { name: "GenAI", path: "/genai" },
   { name: "Registration", path: "/registration-form" },
   { name: "Login", path: "/login" },
 ];
