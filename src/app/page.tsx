@@ -30,7 +30,7 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Welcome to Empower AI-BI</h1>
         <div className='grid gap-4 bg-[var(--color-lighter-blue)] p-6 rounded-lg shadow-md mb-12'>
-        <p className="text-xl text-gray-600 text-left font-bold italic"> Web and back-end Development for Multi-Cloud environments, offshoe / onshore support in Azure, AWS, and GCP. Generative AI: LLM fine-tuning, RAG Architecture, Lang Chain framworks, Agents and custom develpment. Register for our demo / information.</p>
+        <p className="text-xl text-gray-600 text-left font-bold italic">Web and back-end Development for Multi-Cloud environments, offshore / onshore support in Azure, AWS, and GCP. Generative AI: LLM fine-tuning, RAG Architecture, LangChain frameworks, Agents and custom development. Register for our demo / information.</p>
         </div>
         <div className="text-center mb-8">
           <Link href="/registration-form" className="text-blue-500 hover:text-blue-700 text-xl font-semibold">
