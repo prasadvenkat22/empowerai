@@ -28,7 +28,9 @@ export default function HomePage() {
   return (
     <main className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 text-center mb-6 sm:mb-8">Welcome to Empower AI-BI</h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center mb-8 sm:mb-10 bg-gradient-to-r from-blue-600 to-teal-400 text-transparent bg-clip-text py-2 leading-tight tracking-tight">
+          Empower AI / BI 
+        </h1>
         <div className='bg-white p-4 sm:p-6 rounded-lg shadow-md mb-8 sm:mb-12 border border-[var(--color-light-blue)]'>
           <p className="text-base sm:text-xl text-gray-800 text-left font-bold font-sans">Web and back-end Development for Multi-Cloud environments, offshore / onshore support in Azure, AWS, and GCP. Generative AI: LLM fine-tuning, RAG Architecture, LangChain frameworks, Agents and custom development. Register for our demo / information.</p>
         </div>
