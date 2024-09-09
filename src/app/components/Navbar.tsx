@@ -64,8 +64,8 @@ export default function Navbar() {
                 href={tab.path}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition duration-300 ${
                   isActive(tab.path)
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-800 hover:bg-blue-100"
+                    ? "bg-blue-600 text-white"
+                    : "text-blue-600 hover:bg-blue-100"
                 }`}
               >
                 {tab.name}
@@ -97,8 +97,8 @@ export default function Navbar() {
                   href={tab.path}
                   className={`block px-3 py-2 rounded-md text-sm font-medium transition duration-300 ${
                     isActive(tab.path)
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-800 hover:bg-blue-100"
+                      ? "bg-blue-600 text-white"
+                      : "text-blue-600 hover:bg-blue-100"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
