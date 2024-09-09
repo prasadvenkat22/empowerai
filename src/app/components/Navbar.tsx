@@ -15,12 +15,10 @@ type Tab = {
 
 const tabs: Tab[] = [
   { name: "Contacts", path: "/contacts" },
-  { name: "Customer", path: "/customer" },
-  { name: "Service", path: "/service" },
-  { name: "Users", path: "/users" },
-  { name: "GenAI", path: "/genai" },
   { name: "Registration", path: "/registration-form" },
-  { name: "Login", path: "/login" },
+  { name: "GenAI", path: "/genai" },
+  { name: "AI RAG", path: "/embedded-page" },
+ { name: "Login", path: "/login" },
 ];
 
 export default function Navbar() {
