@@ -1,0 +1,10 @@
+npm install @supabase/ssr @supabase/supabase-js
+npm install @supabase/auth-helpers-nextjs @supabase/supabase-js
+npm i @supabase/auth-ui-react
+npm i geist
+
+npm install next@latest
+npm uninstall next
+npm install next
+npm run build
+npm run start

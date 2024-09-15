@@ -1,11 +1,19 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function RegistrationResponse() {
+function RegistrationResponseContent() {
   const searchParams = useSearchParams();
   const data = searchParams.get('data');
-  const parsedData = data ? JSON.parse(data) : null;
+
+  let parsedData = null;
+
+  try {
+    parsedData = data ? JSON.parse(data) : null;
+  } catch (error) {
+    console.error('Error parsing JSON data:', error);
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -23,5 +31,13 @@ export default function RegistrationResponse() {
         <p>No data available</p>
       )}
     </div>
+  );
+}
+
+export default function RegistrationResponse() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RegistrationResponseContent />
+    </Suspense>
   );
 }
