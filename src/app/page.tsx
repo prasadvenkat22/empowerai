@@ -26,15 +26,20 @@ export default function HomePage() {
   ]
 
   return (
-    <main className="bg-gray-100 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="bg-white p-6 rounded-lg shadow-lg mb-8 sm:mb-12 border border-blue-200">
-          <p className="text-blue-500 text-left font-semibold text-base sm:text-lg">
-          At Cloud Vision, we provide top-notch IT Consulting Services and Solutions for enterprises: Data/AI strategies, Data Lake/Data Engineering solutions, BI/AI integrations and support for multi-cloud environments. We specialize in big data engineering solutions and cloud database migrations for Databricks, Snowflake, Azure SQL, and BigQuery. Our offshore/onshore teams provide 24x7 support and immediate issue resolution in Azure, AWS, and GCP environments. We also implement data analytic solutions, BI, and data-driven generative AI solutions including LLM fine-tuning, RAG architecture, LangChain frameworks, agents, and custom development in AzureAI, VertexAI and AWS Bedrock.          </p>
+    <main className="bg-gray-100 min-h-screen pt-1"> {/* Reduced padding from pt-12 to pt-0 */}
+      <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-4">
+        <h1 className="text-4xl font-bold mb-4">Cloud Vision Consulting</h1>
+        <p className="text-lg sm:text-xl">Expert IT Solutions and Services for Enterprises</p>
+      </div>
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 sm:py-12 mb-2">
+        <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">
+          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-4">
+            At Cloud Vision, we offer premier IT Consulting Services and Solutions for enterprises, including Data/AI strategies, Data Engineering, and multi-cloud support. We excel in big data solutions and cloud migrations for Databricks, Snowflake, Azure SQL, and BigQuery. Our 24x7 support teams handle immediate issues across Azure, AWS, and GCP. Additionally, we provide data analytics, BI, and AI solutions such as LLM fine-tuning and RAG architecture across AzureAI, VertexAI, and AWS Bedrock.
+          </p>
         </div>
-        <div className="text-center mb-8">
-          <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-600 text-lg sm:text-xl font-semibold py-2 px-4 rounded transition-colors duration-300">
-           Please Register for a demo / inquiries
+        <div className="text-center mb-4">
+          <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-600 text-lg sm:text-xl font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+            Register for a demo / inquiries
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
