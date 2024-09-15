@@ -27,17 +27,18 @@ export default function HomePage() {
 
   return (
     <main className="bg-gray-100 min-h-screen pt-0">
-      <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-2">
-        <h1 className="text-4xl font-bold mb-1">Cloud Vision Consulting</h1>
-        <p className="text-lg sm:text-xl">Expert IT Solutions and Services for Enterprises</p>
+      <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-0">
+        <h1 className="text-4xl font-bold mb-1">Cloud Vision</h1>
+        <p className="text-lg sm:text-xl">IT Solutions and Services for Enterprises</p>
       </div>
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-2">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-1">
         <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">
-          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-4">At Cloud Vision, we offer premier IT Consulting Services and Solutions for enterprises, including Data/AI strategies, Data Engineering, and multi-cloud support. We excel in big data solutions and cloud migrations for Databricks, Snowflake, Azure SQL, and BigQuery. Our 24x7 support teams handle immediate issues across Azure, AWS, and GCP. Additionally, we provide data analytics, BI, and AI solutions such as LLM fine-tuning and RAG architecture across AzureAI, VertexAI, and AWS Bedrock.</p>
+          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-1">
+          We specialize in cloud migrations, big data engineering - Databricks, Snowflake, Big Query, Azure SQL and 24/7 support across Azure, AWS, and GCP. Our services include data analytics, BI, and advanced AI solutions like Gen AI, LLM fine-tuning and RAG architecture.</p>
         </div>
         <div className="text-center mb-4">
           <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-600 text-lg sm:text-xl font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
-            Register for a demo / inquiries
+            Register for a inquiries / Demo
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
