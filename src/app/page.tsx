@@ -26,16 +26,14 @@ export default function HomePage() {
   ]
 
   return (
-    <main className="bg-gray-100 min-h-screen pt-1"> {/* Reduced padding from pt-12 to pt-0 */}
-      <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-4">
-        <h1 className="text-4xl font-bold mb-4">Cloud Vision Consulting</h1>
+    <main className="bg-gray-100 min-h-screen pt-0">
+      <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-2">
+        <h1 className="text-4xl font-bold mb-1">Cloud Vision Consulting</h1>
         <p className="text-lg sm:text-xl">Expert IT Solutions and Services for Enterprises</p>
       </div>
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 sm:py-12 mb-2">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-2">
         <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">
-          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-4">
-            At Cloud Vision, we offer premier IT Consulting Services and Solutions for enterprises, including Data/AI strategies, Data Engineering, and multi-cloud support. We excel in big data solutions and cloud migrations for Databricks, Snowflake, Azure SQL, and BigQuery. Our 24x7 support teams handle immediate issues across Azure, AWS, and GCP. Additionally, we provide data analytics, BI, and AI solutions such as LLM fine-tuning and RAG architecture across AzureAI, VertexAI, and AWS Bedrock.
-          </p>
+          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-4">At Cloud Vision, we offer premier IT Consulting Services and Solutions for enterprises, including Data/AI strategies, Data Engineering, and multi-cloud support. We excel in big data solutions and cloud migrations for Databricks, Snowflake, Azure SQL, and BigQuery. Our 24x7 support teams handle immediate issues across Azure, AWS, and GCP. Additionally, we provide data analytics, BI, and AI solutions such as LLM fine-tuning and RAG architecture across AzureAI, VertexAI, and AWS Bedrock.</p>
         </div>
         <div className="text-center mb-4">
           <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-600 text-lg sm:text-xl font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
@@ -45,7 +43,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {specialties.map((specialty, index) => (
             <div key={index} className="bg-white overflow-hidden shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300 ease-in-out hover:border-blue-300 hover:border-2">
-              <div className="p-6">
+              <div className="p-1">
                 <div className="text-4xl mb-3 text-blue-500">{specialty.icon}</div>
                 <h2 className="text-2xl font-semibold text-gray-800 mb-2">{specialty.title}</h2>
                 <p className="text-base text-gray-600">{specialty.description}</p>
