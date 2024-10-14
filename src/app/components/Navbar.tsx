@@ -50,7 +50,7 @@ export default function Navbar() {
             <Link href="/" aria-label="Home">
               <Image
                 src="/logo.svg"
-                alt="EBI Logo"
+                alt="DIQ Systems Logo"
                 width={150}
                 height={40}
                 priority

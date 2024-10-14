@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
+import Layout from "../components/Layout";
 
 function RegistrationResponseContent() {
   const searchParams = useSearchParams();

@@ -28,8 +28,8 @@ export default function HomePage() {
   return (
     <main className="bg-gray-100 min-h-screen pt-0">
       <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-0">
-        <h1 className="text-4xl font-bold mb-1">Cloud Vision</h1>
-        <p className="text-lg sm:text-xl">IT Solutions and Services for Enterprises</p>
+        <h1 className="text-4xl font-bold mb-1">Data IQ Systems</h1>
+        <p className="text-lg sm:text-xl">Data and Cloud Engineering Solutions for Enterprises</p>
       </div>
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-1">
         <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">

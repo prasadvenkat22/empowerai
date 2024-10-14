@@ -5,7 +5,7 @@ import TitleUpdater from './components/TitleUpdater';
 import Navbar from './components/Navbar';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const appName = "EBI"; // Define your app name here
+  const appName = "DIQ"; // Define your app name here
 
   return (
     <html lang="en">

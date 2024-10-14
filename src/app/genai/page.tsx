@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Layout from "../components/Layout";
 
 export default function GenAIPage() {
   const [input, setInput] = useState('')
@@ -29,6 +30,8 @@ export default function GenAIPage() {
   }
 
   return (
+    <Layout>
+
     <main className="max-w-4xl mx-auto px-4 py-6 sm:py-8">
       <Link href="/" className="text-blue-500 hover:text-blue-700 mb-4 inline-block text-sm sm:text-base">
         ← Return to Home
@@ -61,5 +64,7 @@ export default function GenAIPage() {
         </div>
       )}
     </main>
+    </Layout>
+
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Layout from "../components/Layout";
 
 interface Service {
   name: string;
@@ -69,6 +70,8 @@ export default function RegistrationForm() {
   };
 
   return (
+    <Layout>
+
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Registration Form</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -113,5 +116,7 @@ export default function RegistrationForm() {
         </button>
       </form>
     </div>
+    </Layout>
+
   );
 }
