@@ -45,8 +45,8 @@ export default function HomePage() {
             <div key={index} className="bg-white overflow-hidden shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300 ease-in-out hover:border-blue-300 hover:border-2">
               <div className="p-1">
                 <div className="text-4xl mb-3 text-blue-500">{specialty.icon}</div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">{specialty.title}</h2>
-                <p className="text-base text-gray-600">{specialty.description}</p>
+                <h2 className="text-2xl font-semibold text-blue-500 mb-2">{specialty.title}</h2>
+                <p className="text-base text-black-500">{specialty.description}</p>
               </div>
             </div>
           ))}

@@ -8,6 +8,7 @@ npm uninstall next
 npm install next
 npm run build
 npm run start
+npm install @supabase/supabase-js
 
 --git commands
 --git clone
