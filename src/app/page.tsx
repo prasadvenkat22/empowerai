@@ -28,13 +28,12 @@ export default function HomePage() {
   return (
     <main className="bg-gray-100 min-h-screen pt-0">
       <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-0">
-        <h1 className="text-4xl font-bold mb-1">Data IQ Systems</h1>
         <p className="text-lg sm:text-xl">Data and Cloud Engineering Solutions for Enterprises</p>
       </div>
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-1">
         <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">
           <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-1">
-          We specialize in cloud migrations, big data engineering - Databricks, Snowflake, Big Query, Azure SQL and 24/7 support across Azure, AWS, and GCP. Our services include data analytics, BI, and advanced AI solutions like Gen AI, LLM fine-tuning and RAG architecture.</p>
+          Empower Business Intelligence, Data Analytics, GEN AI (LLM fine-tuning and RAG architecture), Big data engineering solutions - Databricks, Snowflake and 24/7 support across Azure, AWS, and GCP. </p>
         </div>
         <div className="text-center mb-4">
           <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-500 text-sm sm:text-xs font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
