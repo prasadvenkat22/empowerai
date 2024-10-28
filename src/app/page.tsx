@@ -37,8 +37,8 @@ export default function HomePage() {
           We specialize in cloud migrations, big data engineering - Databricks, Snowflake, Big Query, Azure SQL and 24/7 support across Azure, AWS, and GCP. Our services include data analytics, BI, and advanced AI solutions like Gen AI, LLM fine-tuning and RAG architecture.</p>
         </div>
         <div className="text-center mb-4">
-          <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-600 text-lg sm:text-xl font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
-            Register for a inquiries / Demo
+          <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-500 text-sm sm:text-xs font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+            Contact us for a Inquiries / Demo
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">

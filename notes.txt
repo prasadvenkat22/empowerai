@@ -8,3 +8,9 @@ npm uninstall next
 npm install next
 npm run build
 npm run start
+
+--git commands
+--git clone
+--git add .
+--git commit -m "info"
+git push -u origin
