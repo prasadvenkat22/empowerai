@@ -38,7 +38,7 @@ export default function HomePage() {
         </div>
         <div className="text-center mb-4">
           <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-500 text-sm sm:text-xs font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
-            Contact us for a Inquiries / Demo
+            Contact us for Inquiries / Demo
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
