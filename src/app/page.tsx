@@ -28,11 +28,11 @@ export default function HomePage() {
   return (
     <main className="bg-gray-100 min-h-screen pt-0">
       <div className="bg-gradient-to-r from-blue-500 to-teal-400 text-white p-2 text-center rounded-b-lg shadow-lg mb-0">
-        <p className="text-lg sm:text-xl">Data and Cloud Engineering Solutions for Enterprises</p>
+        <p className="text-lg sm:text-xl">Generative AI, Data and Cloud Engineering Solutions for Enterprises</p>
       </div>
       <div className=" mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-1">
         <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">
-          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-1">Empower Business Intelligence, Generative AI (LLM fine-tuning / RAG architecture) solutions and enable Data Analytics for you business. Our Consultants specialize in implementing Big data engineering projects - Databricks, Snowflake and Cloud Applications. We offer 24/7 support across cloud environments -Azure, AWS, and GCP for Enterprises. </p>
+          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-1">Empower Generative AI, Business Intelligence and Data Analytics. We specialize is providing right architecture, solutions and cost optimizations. We specialize in Big data engineering projects and cloud platforms - Databricks, Snowflake and Cloud Applications. We offer 24/7 support for cloud platforms -Azure, AWS, and GCP for Enterprises. </p>
         </div>
         <div className="text-center mb-4">
           <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-500 text-sm sm:text-xs font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
