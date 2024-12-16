@@ -32,7 +32,7 @@ export default function HomePage() {
       </div>
       <div className=" mx-auto px-2 sm:px-6 lg:px-8 py-4 sm:py-6 mb-1">
         <div className="bg-white p-1 rounded-lg shadow-lg border border-blue-200 mb-4">
-          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-1">Empower Business Intelligence, Data Analytics, and GEN AI (LLM fine-tuning and RAG architecture). Our Consultants specialize in implementing Big data engineering projects - Databricks, Snowflake and Cloud Applications. We offer 24/7 support across cloud environments -Azure, AWS, and GCP for Enterprises. </p>
+          <p className="text-blue-600 text-left font-semibold text-base sm:text-lg mb-1">Empower Business Intelligence, Generative AI (LLM fine-tuning / RAG architecture) solutions and enable Data Analytics for you business. Our Consultants specialize in implementing Big data engineering projects - Databricks, Snowflake and Cloud Applications. We offer 24/7 support across cloud environments -Azure, AWS, and GCP for Enterprises. </p>
         </div>
         <div className="text-center mb-4">
           <Link href="/registration-form" className="bg-blue-500 text-white hover:bg-blue-500 text-sm sm:text-xs font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
