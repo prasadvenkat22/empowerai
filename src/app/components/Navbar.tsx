@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { usePathname } from "next/navigation"; // Import usePathname
-import { createClient } from "../lib/supabase/client";
 import { Avatar } from "./Avatar";
 
 type Tab = {
@@ -14,33 +13,20 @@ type Tab = {
 };
 
 const tabs: Tab[] = [
-  { name: "Contacts", path: "/contacts" },
+  { name: "Home", path: "/" },
+  { name: "Users", path: "/users" },
+  { name: "Services", path: "/services" },
+  { name: "Customers", path: "/customers" },
   { name: "Registration", path: "/registration-form" },
   { name: "GenAI", path: "/genai" },
   { name: "AI RAG", path: "/embedded-page" },
- { name: "Login", path: "/login" },
+  { name: "Login", path: "/login" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname(); // Use usePathname to get the current path
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<any>(null); // Add state for user data
   const isActive = (path: string) => pathname === path; // Compare path with pathname
-
-  useEffect(() => {
-    const supabase = createClient();
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error("Error fetching user:", error);
-      } else {
-        setUser(data);
-      }
-    };
-    fetchUser();
-    console.log(user);
-  }, []);
-  console.log(user?.user?.email)
 
   return (
     <header className="bg-white shadow-md w-full">
@@ -58,7 +44,7 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden md:flex space-x-4">
-            {(user ? tabs.slice(0, tabs.length - 1) : tabs).map((tab) => (
+            {tabs.map((tab) => (
               <Link
                 key={tab.name}
                 href={tab.path}
@@ -71,11 +57,7 @@ export default function Navbar() {
                 {tab.name}
               </Link>
             ))}
-            {user && 
-            (
-              <Avatar />
-            )
-           }
+            <Avatar />
           </div>
           <div className="md:hidden">
             <button

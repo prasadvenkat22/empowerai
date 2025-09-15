@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const API_URL = 'http://165.227.97.62:8000/CRUD/Mongodb%20APIs/getallusers';
+const API_URL = 'http://165.227.97.62:8000/CRUD/registrations/?skip=0&limit=100';
 
 export async function GET() {
   try {
@@ -11,7 +11,7 @@ export async function GET() {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Failed to fetch customers:', error);
-    return NextResponse.json({ message: 'Failed to fetch customers' }, { status: 500 });
+    console.error('Failed to fetch users:', error);
+    return NextResponse.json({ message: 'Failed to fetch users' }, { status: 500 });
   }
 }

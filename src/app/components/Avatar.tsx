@@ -30,33 +30,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { createClient } from "../lib/supabase/client";
-import { logout } from "../lib/supabase/logout";
 import { useRouter } from "next/navigation";
 
 export function Avatar() {
-  const [user, setUser] = useState<any>(null);
   const router = useRouter();
-  useEffect(() => {
-    const supabase = createClient();
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error("Error fetching user:", error);
-      } else {
-        setUser(data);
-      }
-    };
-    fetchUser();
-    console.log(user);
-  }, []);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="py-1 text-lg bg-slate-200 rounded-full p-3">
-          {user?.user?.email[0]}
+          U
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
@@ -83,7 +66,6 @@ export function Avatar() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
-            logout();
             router.push("/login");
           }}
         >

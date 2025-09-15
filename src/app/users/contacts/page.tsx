@@ -1,3 +1,4 @@
+// ...existing code...
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { BarChart, Cloud, Code, Database, Layers, LifeBuoy, Menu, Server, Wind } from 'lucide-react';
@@ -26,19 +27,19 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="bg-gray-50 text-gray-800">
-      
+    <div className="bg-white text-gray-800">
+      {/* Header removed — single shared Header should live in src/app/layout.tsx or a shared component */}
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-800 to-indigo-900 text-white">
+      <section className="bg-gray-50">
         <div className="container mx-auto px-6 py-24 text-center">
-          <h1 className="text-5xl font-extrabold mb-4">
+          <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
             Empowering Your Data-Driven Future
           </h1>
-          <p className="text-xl text-blue-200 mb-8">
+          <p className="text-xl text-gray-600 mb-8">
             Generative AI, Data and Cloud Engineering Solutions for Enterprises
           </p>
-          <Link href="/registration-form" className="bg-white text-blue-800 hover:bg-gray-100 font-semibold py-3 px-8 rounded-md text-lg transition-colors">
+          <Link href="/registration-form" className="bg-blue-600 text-white hover:bg-blue-700 font-semibold py-3 px-8 rounded-md text-lg transition-colors">
             Request a Demo
           </Link>
         </div>
@@ -55,7 +56,7 @@ export default function HomePage() {
       </section>
 
       {/* Our Expertise Section */}
-      <section className="bg-white py-20">
+      <section className="bg-gray-50 py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Our Expertise</h2>
@@ -63,7 +64,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {specialties.map((specialty, index) => (
-              <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-blue-600 mb-4">
                   {specialty.icon}
                 </div>
@@ -76,7 +77,7 @@ export default function HomePage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to build your future?</h2>
           <p className="text-lg text-gray-600 mb-8">Let's discuss how we can help you achieve your goals.</p>
@@ -106,3 +107,4 @@ export default function HomePage() {
     </div>
   );
 }
+// ...existing code...
